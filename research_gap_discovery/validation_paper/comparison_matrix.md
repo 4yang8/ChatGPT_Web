@@ -91,3 +91,33 @@
 - **잠정 Narrowed B1:** 정해진 고수준 궤적은 **hard required state가 아니라 선호 또는 허용 가능한 범위**로만 두고, 상담사의 개입이 이를 위반하는 경우 **정당한 stall/rollback/repair**를 허용하며, 이 균형을 여러 profile에서 *같은 조건의* counterfactual로 평가할 수 있는가? CALM-IT/PATIENTACT/MASC/AVP 대비 실제 실패가 있는지 확인 전에는 Gap 확정 금지.
 
 상세: [Iteration 4 종합](../iteration_04_synthesis.md) · [논문별 개별 분석](README.md).
+
+
+---
+
+## Iteration 5 — 일반 Role-Playing/Agent Memory 4편과 B4 (2026-10-30)
+
+핵심 비교 질문: **발화 \(u_t\)를 생성하던 시점의 \(z_t\)(내담자의 비공개 의도·해석)를 그 발화에 묶어 다음 턴에서도 활용하는가?** 아래 '부재'는 PDF 공개 구현의 한계를 뜻하며 다른 문헌 전체의 부재를 뜻하지 않는다.
+
+| Method | 기억에 들어가는 내용 | 생성 시점·저장 의미 | 나중에 사용하는 방식 | B4와 충돌 수준 |
+|---|---|---|---|---|
+| DualMem | observed facts \(F_i\) + persona-conditioned interpretation \(I_i\) | 대화 chunk 처리 시 \(I_i=f(F_i,p,M_{<i})\) 합성, fact↔insight 연결 | query에 fact+insight retrieval | **매우 높음**: 주관적 해석의 지속적 기억 이미 존재. 하지만 '말하기 직전 스스로 선택한 의도' 아님 |
+| SAM | past reasoning/tool calls/observations as raw trajectory pages + cues | agent trajectory 실행 중 기록한 text trace를 page로 보존; cue는 pointer | current intent 기반 원본 재구성·검색 | **높음**: 과거 사고 원본 보존과 goal-based recall은 이미 연구. 상담 발화의 역사적 자기 의도와 구분 |
+| SAMem | state \(s_t\), thought \(th_t\), action, reward, Q(s,th) | 의사결정 당시 state–thought–action을 수집한 후 추상화/cluster; thought에서 구체 개체 제거 | 유사 state에서 **높은 Q의 reusable thought** 조회 | **높음**: state–thought pair 신규성 없음. episodic autobiographical motive와는 다름 |
+| MRPrompt | static persona facets: emotional_state, behavior_pattern, thinking_pattern, cue, time scope | 과거 작품/성격에서 사전 구성한 LTM; 한 세션 중 새 intent를 쓰지 않음 | dialogue STM cue로 facet 검색/적용 | **중간**: thinking_pattern retrieval 선행. contemporaneous utterance motive 기록은 범위 밖 |
+
+### 이전 상담 분야 논문들과 합산
+- **CARS**(Appendix A.2): Thinking, Emotion, Intention, Response와 **previous feelings/goals `{PLANNING}`**을 다음 입력에 제공. 발화시 의도 유지의 직접적 전례. 단 특정 과거 발화와 그 당시의 내적 의도를 **장기 사건기억**으로 연결한 평가 근거는 미확인.
+- **CALM-IT**: 현재 목표, 직전 상담사 평가, rapport/emotion/goal을 다음 턴으로 전달. **당시의 특정 과거 발화 motive**의 별도 episodic ledger는 명시되지 않음.
+- **PUPPET**: current mental state를 확률 state machine으로 업데이트하고 condition generation. prior belief/rule trigger의 전 경로 기억이라는 별도 구조는 미확인.
+- **MASC**: Retry Memory는 **같은 턴 재생성**용이며 cross-turn autobiographical memory 아님.
+- **MRPrompt**: `thinking_pattern`은 **정적 역할 특성**이므로 기존 "내면이 없었다" 주장에 대한 반례지만 실시간 개인 내면 기억의 직접 구현은 아님.
+
+### 과학적으로 주장 가능한 범위
+**Reject:** "LLM은 과거 발화 외에는 아무것도 기억하지 않는다"; "생각을 저장하는 메모리를 처음 고안"; "facts+insights를 처음 분리".
+
+**Open/narrowed B4:** 현재 state를 유지하는 것과 다르게, **특정 발화 시점에 확정된 비공개 자기 의도**를 발화별로 연결·보존하고, 동일 공개 대화에서 서로 다른 당시 의도를 안정적으로 구별하여 후속 개입에 반응하는가? 이미 그 시점의 기록을 만드는 것이 단순한 post hoc reflection보다 실제 장기 정합성을 높이는가?
+
+**Major validity issue:** 시뮬레이터가 생성한 과거 의도는 인간의 검증된 심리 원인이 아닌 **simulation-internal latent event**다. self-consistency와 human psychological plausibility를 분리 평가. **기억의 정확성**과 **원래 기록된 해석의 진실성**은 다름(SAM Appendix E.2의 wrong frame failure).
+
+전체 판정 및 실험: [iteration_05_synthesis.md](../iteration_05_synthesis.md) · [B4 상세](../track_b_utterance_grounded_intent_memory.md).

@@ -58,3 +58,17 @@ Research Gap 후보를 확인·반박하기 위해 검토하는 논문 원문과
 [12편 종합 비교](comparison_matrix.md) · [Gap Iteration 4](../gap_register.md) · [Iteration 4 상세 종합](../iteration_04_synthesis.md)
 
 참고: 새 4편의 PDF도 사용자 채팅 첨부본을 근거로 분석했다. **GitHub에는 Markdown 분석과 해시를 기록했으며 PDF 원본 바이너리를 올렸다는 의미는 아니다.**
+
+
+## 2026 인접 Role-Playing / Agent Memory 연구 4편 추가 (Iteration 5; 누적 전문 검토 16편)
+
+> 기존 **심리상담/시뮬레이션 관련 12편**과 달리 아래 네 편은 **일반 Role-Playing 또는 Agentic Decision-Making** 연구다. 상담 시뮬레이터의 임상 타당성을 입증한 논문으로 간주하지 않는다.
+
+| 논문 | PDF | 분석 | B4와의 비교 |
+|---|---|---|---|
+| RoleMemo / DualMem | [arXiv:2605.25693v1](https://arxiv.org/pdf/2605.25693v1) | [dualmem_rolememo.md](dualmem_rolememo.md) | 사실 + persona-conditioned insight를 **작성 단계에서 저장**; 당시에 실제로 선택한 발화의 자기 의도와는 구별 |
+| SAM | [arXiv:2605.24468v1](https://arxiv.org/pdf/2605.24468v1) | [sam_state_adaptive_memory.md](sam_state_adaptive_memory.md) | 과거 사고·행동·관찰 trace 저장 + 현재 목적별 recall; 특정 상담 발화 이유의 역사적 정합성 미검증 |
+| SAMem | [Findings ACL 2026](https://aclanthology.org/2026.findings-acl.722.pdf) | [samem_state_aware_memory.md](samem_state_aware_memory.md) | state–thought Q-memory, reusable decision policy vs 개인적 당시 motive |
+| Memory-Driven Role-Playing (MDRP/MRPrompt) | [arXiv:2603.19313v1](https://arxiv.org/pdf/2603.19313v1) | [memory_driven_role_playing.md](memory_driven_role_playing.md) | 정적 scene facet의 thinking_pattern, 단일턴 continuation; 세션 중 의도 기억 생성/갱신 아님 |
+
+**새 Gap 후보:** [B4 — Utterance-Grounded Episodic Intent Memory](../track_b_utterance_grounded_intent_memory.md) · [Iteration 5 종합](../iteration_05_synthesis.md) · [Gap Register](../gap_register.md). 원본 PDF 바이너리는 이 대화에만 업로드되어 있고 GitHub에는 분석 Markdown·SHA-256을 저장함.

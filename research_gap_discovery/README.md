@@ -44,9 +44,11 @@ Research Gap 후보 정의 (아직 검증 전)
 
 - [iterative_validation_protocol.md](iterative_validation_protocol.md) — 반복 검증 절차와 판정 기준
 - [gap_register.md](gap_register.md) — Research Gap 후보별 증거, 반증 조건, 다음 조사
-- [validation_paper/README.md](validation_paper/README.md) — 현재 전문 검토한 2026년 논문 12편의 비교·분석 링크
+- [validation_paper/README.md](validation_paper/README.md) — 현재 전문 검토한 2026년 상담·시뮬레이션 12편 및 인접 에이전트 기억 연구 4편 (총 16편)의 비교·분석 링크
 - [validation_paper/PDF_SOURCES.md](validation_paper/PDF_SOURCES.md) — PDF 원본·출처·버전 추적
-- [iteration_04_synthesis.md](iteration_04_synthesis.md) — **신규 4편 심층 검토 및 12편 기준 Research Gap 재판정**
+- [iteration_04_synthesis.md](iteration_04_synthesis.md) — 2026 상담·시뮬레이션 12편 기준 Research Gap 검증
+- [iteration_05_synthesis.md](iteration_05_synthesis.md) — **RoleMemo/DualMem·SAM·SAMem·MRPrompt 4편과 B4 중복 검증**
+- [track_b_utterance_grounded_intent_memory.md](track_b_utterance_grounded_intent_memory.md) — **B4: 발화 당시의 비공개 의도를 다음 턴에 기억하는 설계의 신규성 후보**
 
 ## 해석 원칙
 

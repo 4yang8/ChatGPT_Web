@@ -140,3 +140,39 @@ AnnaAgent, Consistent Client Simulation for MI, Patient-Ψ, Roleplay-doh, CARE-B
 4. **A1 유지 여부**: simulator의 conditional state dynamics만 매칭해 바꾼 학습 실험이 이미 보고됐는지 검증.
 
 **중요:** 위 판정은 누적 12편에 한정된다. 현재 가설의 최종 Novelty/Significance 판단을 의미하지 않는다.
+
+
+---
+
+## Iteration 5 — 새로운 B4: Utterance-Grounded Episodic Intent Memory (2026-10-30)
+
+### 사용자 제안
+**특정 n턴에 내담자가 발화를 생성할 때 가지고 있던 생각·숨은 의도·망설임을, 단순히 발화 히스토리로 저장하는 것이 아니라 그때의 내면 판단 기록으로 보존해 이후 턴에 활용해야 한다.** 사람이 자기 발화와 그 당시 마음을 구별해 기억하는 현상에서 출발한 시뮬레이션 모델링 아이디어.
+
+### 2026 문헌 반증 (심리 상담 12편 + 일반 RP/Memory 추가 4편)
+- [DualMem](validation_paper/dualmem_rolememo.md) — **facts + persona-conditioned insight**의 write-time 추출/저장 및 역할 수행 개선까지 이미 제시. 넓은 '주관적 해석 기억' novelty 기각.
+- [SAM](validation_paper/sam_state_adaptive_memory.md) — **thought·action·observation trace의 원본 보존과 goal-conditioned 복구**가 이미 존재. 넓은 '과거 생각 보존/검색' novelty 기각.
+- [SAMem](validation_paper/samem_state_aware_memory.md) — **state–thought memory + Q-value/과거 결정 이유 재사용** 이미 구현. 넓은 'state+thought pair' novelty 기각.
+- [MRPrompt](validation_paper/memory_driven_role_playing.md) — static persona `thinking_pattern`과 dialogue cue-driven retrieve, 하지만 within-session memory write가 없는 단일턴 연구.
+- [CARS](validation_paper/cars_streams.md) — 이전 feelings/goals를 `{PLANNING}`으로 넘기며, current Thinking/Intention도 생성. **가장 직접적인 상담 시뮬레이션 중복**.
+- [CALM-IT](validation_paper/calm_it.md) — current/previous goal, rapport, emotion을 턴 간 유지. 일반적인 내면 상태 지속의 선행.
+
+### B4 좁힌 가설 (미확정)
+> **Does preserving a client simulator’s contemporaneous, utterance-linked private intention—as distinct from public dialogue history, current state, retrospectively inferred insight, or generic thought templates—improve later interaction coherence and intervention-contingent behavior?**
+
+**가설이 성립하려면**:
+1. `u_t`가 생성되기 **직전에/같은 생성 단계에** 확정한 motive `z_t`를 기록하고, *그 발화와 시점*을 링크해야 한다. 뒤에 가서 public utterance로 다시 생성한 '사후 이유'와 분리해야 함.
+2. 같은 공개 발화, 같은 현재 심리 점수에서도 당시 motive가 다른 **counterfactual pairs**에서 이후 반응의 차이가 타당하게 나타나야 한다.
+3. **Dialogue only / current-state summary / retrospective insight (DualMem-like) / contemporaneous episodic-intent memory / shuffled-intent control**의 비교. 컨텍스트 토큰·초기 상태·모델·복잡성을 맞출 것.
+4. retrospective insight도 먼저 작성된 memory라서 **쓰기/원인 시점, 출처**를 엄격히 구분해야 함. 단순히 '원시 CoT를 저장한다'는 것을 기여로 주장하지 않는다.
+5. 기억이 과거 오해를 충실히 저장한 경우(예: SAM Appendix E.2), **당시의 생각은 불변 역사적 기록**이더라도 현재 믿음/의도는 새로운 증거로 바뀔 수 있도록 분리.
+6. 생성한 의도는 모델의 실제 비공개 인간 생각을 관찰한 것이 아닌 **simulator-authored latent narrative**이다. 임상 심리적 타당성은 독립적으로 검증해야 한다.
+
+### 연구 상태 및 판정
+| 후보 | 판정 | 이유 |
+|---|---|---|
+| B4 일반: 내부 생각을 저장/검색 | **REJECT — 넓은 claim 직접 중복** | DualMem, SAMem, SAM, CARS |
+| B4 좁힘: *contemporaneous utterance-linked private motive*의 temporal/provenance fidelity와 downstream counseling consistency | **NARROW / 유지할 가치 있는 가설** | 16편의 문서화된 실험에서는 직접적 검증 미확인. **이것만으로 전체 분야 신규성 확정 아님** |
+| B4 with A1: memory-derived simulator improvement가 상담사 학습에 기여 | **OPEN / optional** | 효과 검증 선행 및 비용 통제 필요 |
+
+**즉시 필요한 반증:** [iteration_05_synthesis.md](iteration_05_synthesis.md)와 [track_b_utterance_grounded_intent_memory.md](track_b_utterance_grounded_intent_memory.md). 2025 관련 논문 PRIME, Pre-storage reasoning, Thinking in Character, CATCH 등은 사용자 계획대로 **추후 2025 문헌 라운드**에서 검토.

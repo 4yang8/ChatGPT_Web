@@ -46,3 +46,15 @@
 | AVP | 2606.10051v2.pdf | 1761028 | b946cf0414e08cc11d1ec22ec8e85bd4d000014b3d3347f2eceef577e5a344b9 | [arXiv:2606.10051v2](https://arxiv.org/pdf/2606.10051v2) |
 
 상태: PDF 원본은 **현재 채팅 첨부**로 읽었고, GitHub 파일 목록에 바이너리 PDF 업로드가 확인된 것은 아니다. GitHub에는 논문별 Markdown 분석 및 이 원문 메타데이터만 반영했다.
+
+
+## 2026년 인접 기억 연구 4편 (Iteration 5, 2026-10-30, 사용자 첨부)
+
+| 논문 | 업로드 원본 | 바이트 | SHA-256 (첨부 원본 bytes) | 원문 |
+|---|---|---:|---|---|
+| DualMem / RoleMemo | `2605.25693v1.pdf` | 2,054,854 | `fee049029582e55c5a0a44720c12860023bb984a5104801654d0e294c488b5f6` | [arXiv PDF](https://arxiv.org/pdf/2605.25693v1) |
+| MRPrompt / Memory-Driven Role-Playing | `2603.19313v1.pdf` | 2,980,005 | `394817ee405fb4c1d79baac792decabed8fdce60860bab20fca6e9bea021243f` | [arXiv PDF](https://arxiv.org/pdf/2603.19313v1) |
+| SAM / State-Adaptive Memory | `2605.24468v1.pdf` | 832,869 | `667851e0a9d44b37b33719635a4bdfa8ff72ca3cb2eb4f9fafc05bafaaec7ae9` | [arXiv PDF](https://arxiv.org/pdf/2605.24468v1) |
+| SAMem / State-Aware Memory | `2026.findings-acl.722.pdf` | 2,134,601 | `3a0c65602ecf39673d3f7d49ab280d3823e441021f6bdacfb61ab36ecb1d6795` | [ACL Anthology PDF](https://aclanthology.org/2026.findings-acl.722.pdf) |
+
+**상태:** PDF 원본은 이 대화에서 사용자 첨부 파일을 분석했으며 GitHub 저장소에 PDF 바이너리를 업로드한 것은 아니다.
