@@ -40,7 +40,7 @@
 - PsyChain: 61–91% win rate는 프론티어 상대 승률이 아니라 domain-specific baseline 상대. 동일규모 Combined 비교는 데이터 양 혼동 일부 방지하지만 동적 반응 자체를 분리하지는 못함.
 
 ### 전체 8편이 만드는 중복/반증
-- 넓은 주장 '27B 등 작은 모델 + agentic'은 DyCoP, PsyChain, CARS/STREAMS와 중복.
+- **연구 범위 재분류:** 27B 및 Tool/Agentic은 독립 Contribution/Gap이 아니라, 확인된 Gap의 연구 가설을 구현하는 **방법 선택지(M1)**이다. DyCoP, PsyChain, CARS/STREAMS는 구현 방식을 선택할 때 참고할 선행 사례.
 - 넓은 주장 'intervention→mental state→response'는 PUPPET, CARS와 중복.
 - 넓은 주장 '시뮬레이터 생성 합성 데이터로 상담 모델 성능 향상'은 PsychePass, Graph2Counsel, TherapyGym, PsyChain, CARS와 중복.
 - Graph2Counsel의 costly CoT/MA 실패는 planning 필요성을 자동으로 전제하지 말라는 근거.
