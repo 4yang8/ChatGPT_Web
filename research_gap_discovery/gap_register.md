@@ -6,7 +6,7 @@
 |---|---|---|---|---|
 | G1 | 시뮬레이터의 어떤 fidelity 요인이 **downstream 상담사 학습 효과**를 설명하는가? | 단순 '좋은 데이터가 좋다'를 넘어 성분별 인과효과 추정 | PsychePass, PUPPET, PsyCLIENT | **Keep as hypothesis / 검증 필요** |
 | G2 | **Intervention-conditioned** 상태 전이가 미리 정의하지 않은 사례에도 타당한가? | 규칙 또는 지정 행동 궤적을 넘는 일반화 | PUPPET, PsyCLIENT, ConsistentMI(추가 확인) | **Narrow / 직접 경쟁 존재** |
-| G3 | 27B 도구·상태 기반 시뮬레이터가 프론티어 모델에 비해 **품질–비용 Pareto 개선**이 있는가? | 모델 규모보다 통제·효율이 중요한지 판단 | DyCoP, PUPPET | **Unknown / 강한 비교 요구** |
+| G3 (퇴역) | **독립 Gap으로 다루지 않음** — 27B + Tool/Agentic은 검증할 가설이 아니라, 선택된 Gap을 해결하는 구현 선택지 | Gap과 필요한 능력을 확정한 뒤 선택 여부 검토 | DyCoP, PUPPET 등은 구현 시 참고 | **RECLASSIFIED → M1** |
 | G4 | 매 턴 강제 계획 vs 선택 계획이 **실제 판단 갱신**에 영향을 주는가? | 형식적 단계 수행과 실질적인 판단 개선 분리 | DyCoP; Q3a/Q3b는 노트 조건도 다름 | **Narrow / ablation 필요** |
 
 ## G1의 핵심 가설 예시
@@ -39,7 +39,7 @@ AnnaAgent, Consistent Client Simulation for MI, Patient-Ψ, Roleplay-doh, CARE-B
 |---|---|---|---|
 | G1 | CARS/STREAMS: 동적 저항 내담자와 전략 RL 연결. Graph2Counsel/PsyChain: 구조 기반 합성→8B SFT. TherapyGym: 시뮬레이터→4B GRPO. | **NARROW** | **동일 데이터량·주제·행동 다양성·학습예산·상담사/보상 정책을 통제했을 때, 개입에 대한 반응/상태 변화를 더 잘 모델링하는 시뮬레이터가 미지의 상담사·상황에서 독립적 학습 이익을 제공하는가?** |
 | G2 | PUPPET: 전문가 규칙 기반 intervention→state→response. CARS: CCD·trigger 기반 resistance dynamics. | **REJECT as broad novelty** | 명시적 개입-상태 전이 *자체* 신규성 주장 폐기. 제한된 CBT/CCD 범위 밖, 개인별 변화·다중 세션에서의 **정량 OOD 반응 일반화** 가능성은 후속 검증 후보 |
-| G3 | CARS 0.6B Thinker+8B Presenter; DyCoP 7B; PsyChain 8B SFT, Graph2Counsel의 costly CoT/MA. | **UNKNOWN/REFRAME** | 27B+Tool 구조의 **품질–비용 Pareto frontier**(실제 calls/tokens/wall time/실패율)나 **수정 가능한 상태/재현성**을 동등한 예산·동일 프롬프트의 강한 baseline보다 개선할 수 있는가? |
+| G3 → M1 | CARS/STREAMS, DyCoP, PsyChain, Graph2Counsel은 다양한 구조의 선행 사례다. | **RECLASSIFIED — Gap 아님** | 연구의 Gap·가설이 정해진 다음 그 가설의 검증에 필요한 기능을 정의하고, 그때 Tool/Memory/Agentic/Planning 사용 여부를 선택한다. 일반적인 도구 우수성이나 비용 우위는 논문의 선결 목표가 아니다. |
 | G4 | DyCoP의 Planner 제거 손실 작음. Graph2Counsel은 CoT·MA가 거의 2배 비용 또는 그 이상인데 효과 제한. | **NARROW, method-side** | 특정 복잡성에서 **필요한 플래닝만 하는 구조**가 동일 심리적 응답 타당성에 필요한 호출 수를 줄이는가? 계획 자체의 기여와 노트 작성 변화 반드시 분리 |
 | G5 | CARS는 고협조 시뮬레이터의 **평가 왜곡**을 이미 명시. PsyChain의 prompt는 감정 개선·최종 합의를 미리 요구. | **UNKNOWN; no broad novelty** | 시뮬레이터의 평가자가 관찰하는 **개입 민감도/비단조 심리 변화**가 scripted-progress bias 없이 타당하게 측정되는가? 전문가·실제 데이터 기반 평가 지표가 기존 CARS/PUPPET/Psycheval 대비 무엇을 더 구별하는가? |
 
@@ -63,3 +63,14 @@ AnnaAgent, Consistent Client Simulation for MI, Patient-Ψ, Roleplay-doh, CARE-B
 - 2026 논문 중 simulator fidelity factor의 matched downstream 비교가 실제 있는지 집중 조사.
 
 **주의:** 현재 위 내용은 논문 8편의 비교에 따른 **가설 상태**이며, 처음 공개일 및 실제 2026 논문 선행 결과의 범위를 추가 검증하기 전에는 "새로운 Research Gap 확정"으로 표현하지 않는다.
+
+
+## Methodological Decision M1 — 27B + Tool/Agentic (G3에서 재분류, 2026-10-29)
+
+**연구자가 명확히 한 의도:** 27B급 모델 사용은 연구 수행의 기본 방향이지만, Tool/Agentic/Memory/Planning 자체의 우수성, 중요성, 비용 절감을 입증하는 것이 연구 목표는 아니다. 이 구성 요소들은 **선행연구 검토 → Research Gap 정의 → 가설과 필요한 능력 명세**를 마친 뒤, 필요하다고 판단될 때에만 선택하는 **구현 방법론**이다.
+
+순서: (1) Gap 확인 → (2) 그 Gap을 검증할 가설/평가 설계 → (3) 기능적 요구사항 도출 → (4) 가장 단순한 구현부터 시작하여 필요시 Tool/Agentic 도입 → (5) 연구 가설을 검증.
+
+따라서 계획·기억·도구의 ablation은 그 기능의 선택이 논문에서 주장하는 기여에 실제로 필요한 경우에 한해 실시한다. **'27B+Tool이 프론티어 모델보다 더 낫다'는 사전 가설을 강제하지 않는다.** 비용/효율 지표도 선택한 Research Gap에 관련될 때에만 보조 증거로 제시한다.
+
+앞선 기록의 G3 표기는 **후보에서 철회된 역사적 표기**이며 앞으로는 M1로 부른다.
