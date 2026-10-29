@@ -46,3 +46,18 @@
 5. 개선 범위·통제 조건·평가자의 전문성·안전성·재현 비용을 사전 정의한다.
 
 다음 단계: B1에 대한 **[Soft Trajectory 문제 정의·진단 실험](track_b_soft_trajectory.md)**을 우선 정교화하되, 중복 연구 PDF를 검토한 뒤에도 문제가 남는지 확인한다.
+
+
+---
+
+## Iteration 4: 신규 4편 이후 B1–B3 재판정 (2026-10-29)
+
+**B1 — NARROW substantially / 직접 중복이 큼.** [PATIENTACT](validation_paper/patientact.md)는 애착에 따른 trust update, [CALM-IT](validation_paper/calm_it.md)는 client profile·과거 경험에 조건부로 trust/emotion/goal update, [AVP](validation_paper/adaptive_virtual_patient.md)는 상담 기술에 따라 disclosure 진행 속도를 조절, [MASC](validation_paper/masc.md)는 motivation/barrier에 조건부 stage transition과 fixed schedule 기준선을 함께 사용. 따라서 '성격·상담사 개입에 따라 궤적 속도가 달라진다'는 기여로 주장할 수 없음.
+
+**B2 — DIRECT OVERLAP, further narrowing needed.** CALM-IT은 multi-dimensional states, MASC는 stable Big Five/turn state, PATIENTACT는 trust+memory를 함께 모델링한다. 단순 장기 일관성·계층적 상태 관리만으로는 부족. 다중 세션의 **가역적 변화와 경험적 전이 타당성**처럼 입증되지 않은 명확한 약점이 필요.
+
+**B3 — DIRECT OVERLAP.** AVP는 State–Utterance Faithful Realization(P3), MASC는 목표 EE/PS/CA→발화→judge+retry를 명시적으로 실험. '검증기가 발화를 일치시킨다'만으로 신규성이 없음. 목표 label의 **정확성**과 target adherence를 혼동하는 실패는 새 연구 질문 후보지만 실증 요구.
+
+**남는 B1의 아주 좁은 가능성**: 사전에 설정한 **상위·장기 방향**을 강제적 결과가 아닌 조정 가능한 **soft prior**로 다루면서, 상담사의 지속적인 부적절 개입에서는 **이유 있는 지연·역행·회복 실패**를 허용하고 개인차별 속도와 진행의 통제성을 동시에 평가할 수 있는가. 이것은 **방법론적 가설**, 아직 직접적인 선행 실패 증명 없음.
+
+다음 작업은 새로운 Q 버전 구현보다 CALM-IT/PATIENTACT/MASC/AVP 공식 구현을 근거로 동일 profile·intervention series의 *paired failure discovery*를 수행할 수 있는지 검토하는 것. 구체 실험: [Soft Trajectory Idea](track_b_soft_trajectory.md).

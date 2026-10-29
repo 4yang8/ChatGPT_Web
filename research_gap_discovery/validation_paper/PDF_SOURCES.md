@@ -34,3 +34,15 @@
 | PsyChain | 2026.findings-acl.1831.pdf | 2,871,677 | c87548ee90587e490f90abfb773162240ac1d0a6bbd44e78c635a149e4e54815 | [ACL Anthology](https://aclanthology.org/2026.findings-acl.1831.pdf) |
 
 **GitHub PDF 상태:** 원본 바이너리 업로드는 이번 작업에 포함되지 않았다. 분석 Markdown만 GitHub에 직접 저장했고, PDF의 원본 바이트는 현재 대화 첨부 파일에 존재한다.
+
+
+## 2026년 3차 검토 PDF (2026-10-29, 사용자 첨부 원본 그대로 검증)
+
+| 논문 | 업로드 원본 | 크기(byte) | SHA-256 | 공식 원문 |
+|---|---|---:|---|---|
+| MASC | 2610.08250v1.pdf | 837178 | 3a5111e75d80665516a463b1b3b66dc906974c344f5bea05d1be91fe16671ca0 | [arXiv:2610.08250v1](https://arxiv.org/pdf/2610.08250v1) |
+| CALM-IT | 2601.10085v3.pdf | 5409886 | e5db8f04ab0f1c50d5ec7e094676bed6db842bb7e1d89e964c88713a4937fd75 | [arXiv:2601.10085v3](https://arxiv.org/pdf/2601.10085v3) |
+| PATIENTACT | 2608.12750v2.pdf | 375599 | 92579eced1f7507c0c17936ceaaf54b4557040a5562ddce4d0e0f4345faee045 | [arXiv:2608.12750v2](https://arxiv.org/pdf/2608.12750v2) |
+| AVP | 2606.10051v2.pdf | 1761028 | b946cf0414e08cc11d1ec22ec8e85bd4d000014b3d3347f2eceef577e5a344b9 | [arXiv:2606.10051v2](https://arxiv.org/pdf/2606.10051v2) |
+
+상태: PDF 원본은 **현재 채팅 첨부**로 읽었고, GitHub 파일 목록에 바이너리 PDF 업로드가 확인된 것은 아니다. GitHub에는 논문별 Markdown 분석 및 이 원문 메타데이터만 반영했다.

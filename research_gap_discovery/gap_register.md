@@ -109,3 +109,34 @@ AnnaAgent, Consistent Client Simulation for MI, Patient-Ψ, Roleplay-doh, CARE-B
 **주의:** PatientAct·AVP·Evoke-Sim은 본문 전문 검토 전이며, 선행연구와 '정확히 겹친다'는 결론을 아직 내리지 않는다. 근거 범위와 검토 질문은 [validation_paper/trajectory_related_2026_to_validate.md](validation_paper/trajectory_related_2026_to_validate.md)에 정리했다.
 
 자세한 사용자 아이디어와 제안 설계: [track_b_soft_trajectory.md](track_b_soft_trajectory.md). B 트랙 전체: [track_b_methodological_gaps.md](track_b_methodological_gaps.md).
+
+
+---
+
+## Iteration 4 — 신규 2026 논문 4편 전문 분석, 누적 12편 (2026-10-29)
+
+직접 검토: [MASC](validation_paper/masc.md), [CALM-IT](validation_paper/calm_it.md), [PATIENTACT](validation_paper/patientact.md), [AVP](validation_paper/adaptive_virtual_patient.md). 요약: [iteration_04_synthesis.md](iteration_04_synthesis.md).
+
+### 갱신 판정
+
+| ID | 4편에서 나온 새로운 실증/중복 | 판정 | 현재 주장 가능한 범위 |
+|---|---|---|---|
+| **A1 / G1** | CALM-IT이 **OLMo-3.1-32B SFT→KMI 평가 9항목 중 5개 유의 개선**. AVP는 skill-conditioned 진행과 20인 인간 평가. | **NARROW — 여전히 후보** | '동적 시뮬레이터로 학습한다'는 novelty 없음. **동일 학습/데이터 규모·분포, 다른 generator 환경에서 intervention fidelity 요인만 제어**한 learning transfer의 필요조건·효과를 밝히는 질문만 가능할 여지. |
+| **B1 — Soft Trajectory** | PATIENTACT의 애착별 trust 속도·손실, CALM-IT의 개인 조건부 rapport/goal update, AVP의 skill→disclosure 속도 및 5-arm schedule 비교, MASC의 counselor-driven stage+receptivity+Schedule-ST. | **NARROW STRONGLY / 강한 직접 중복** | '개인차·상담사 발화에 따른 속도 조절'과 '고정 스케줄 대비 adaptive'만으로 신규성 없다. **macro goal을 강제하지 않는 soft prior와 실제 개입 우선순위의 명시적 조율, 지연/후퇴/회복·회복 실패**의 검증이 남는지 실험 필요. |
+| **B2 — 장기 일관성** | CALM-IT 다차원 상태/목표, MASC 세션 수준 성격 및 턴 수준 상태, PATIENTACT trust+memory. | **NARROW STRONGLY** | 다중 세션/다중 state에서의 **가역적 변화/경험적 검증** 등 실제 실패를 특정할 것. |
+| **B3 — 상태→발화 정합성** | MASC target label voting/retry, AVP P3 text-state match(0.651 vs 0.311), PATIENTACT state-to-behavior signal. | **BASE CLAIM REJECT / 보조 문제로만 유지** | '상태를 기록하고 결과 발화를 검사한다'는 신규성 없음. target 자체의 오류를 분리해 **표현 일치 vs 전이 타당성**을 평가하는 질문은 가능. |
+| **M1 — Method choice** | CALM-IT은 DeepSeek-V3.2 + OLMo-32B, MASC는 모델 조합/반복 voting, AVP는 작은 명시 상태 머신. | **UNCHANGED — Gap 아님** | 27B 및 Tool/Agentic/Memory 선택은 확정한 Gap의 **필요한 기능**에 근거. |
+
+### 현재까지 가장 큰 학술적 위험
+- **기존 B1의 중심 메커니즘이 거의 모두 이미 등장**했다. 이들 기능을 단순 조합한 새 시스템은 engineering novelty로 평가될 수 있다.
+- 'MASC가 궤적을 조절하지 못한다', 'CALM-IT이 목표를 강제한다', 'PATIENTACT의 persona 반응이 부정확하다'처럼 **실험하지 않은 실패는 사실로 단정하지 않는다**.
+- **AVP는 hard schedule을 포함한 5-arm offline replay까지 수행**했다. 기존에 제안한 3-way 실험 설계의 신규성은 약하다.
+- **CALM-IT SFT 전이는 이미 존재**한다. Track A는 다른 synthetic generator 조건의 **matched downstream**과 독립 평가를 확보해야 한다.
+
+### 다음 Iteration 목표
+1. **B1 Failure Discovery**: 좋은 개입 / 나쁜 개입 / rupture→repair의 동일 프로필 paired sequences로 실제 약점 찾기; 개인차별 speed 민감도와 unjustified convergence를 평가.
+2. **공정한 비교**: PATIENTACT와 CALM-IT의 공식 규칙/코드, MASC의 target labels, AVP의 5-arm replay를 반드시 baseline에 반영.
+3. **2026 PDF 추가 검증**: [Evoke-Sim, RESISTCLIENT, Psycheval](validation_paper/trajectory_related_2026_to_validate.md), [AVP의 기반 2026 실증 연구](https://arxiv.org/abs/2602.12450), [PatientHub](https://arxiv.org/abs/2602.11684).
+4. **A1 유지 여부**: simulator의 conditional state dynamics만 매칭해 바꾼 학습 실험이 이미 보고됐는지 검증.
+
+**중요:** 위 판정은 누적 12편에 한정된다. 현재 가설의 최종 Novelty/Significance 판단을 의미하지 않는다.

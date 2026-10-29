@@ -77,3 +77,39 @@
 5. 기존 방법과의 직접 비교에서 **궤적 통제성과 개입 반응성을 동시에 개선**했다는 근거를 무엇으로 측정하는가?
 
 **연구 방향 상태:** Track B의 유망한 *검증 대상*, 아직 확정된 ACL Contribution이 아니다. 구현 도구는 가설을 확인한 뒤 필요할 때 결정한다.
+
+
+---
+
+## Iteration 4 추가 검증 — 2026 PDF 전문 4편 결과
+
+**새로운 결론:** '성격·상담사 개입이 궤적 속도에 영향을 준다'는 구성요소 및 간단한 스케줄 대비 adaptive 비교는 **이미 선행연구**다. 연구자의 본래 아이디어는 유지하되, 기본 구성의 신규성 주장은 기각하고 **상위 궤적과 실제 반응 간 우선순위·충돌 해결**이라는 더 좁은 가능성을 검토한다.
+
+| 2026 논문 | 전문에서 확인된 중복 | 아직 열려 있는 것 |
+|---|---|---|
+| [PATIENTACT](validation_paper/patientact.md) | anxious/avoidant/disorganized별 trust update 속도·방향 조절, 기억 공개·저항 연계 | 별도 사전 상위 목표 궤적과 개입 충돌 시 조율, 더 긴 반복 rupture/repair |
+| [CALM-IT](validation_paper/calm_it.md) | session goal과 매턴 갱신 목표, 개인사/성향에 조건부 Δrapport, 감정·변화준비도 갱신 | 실제 세션 trajectory의 외부 타당성과 soft target을 주었을 때의 trade-off |
+| [MASC](validation_paper/masc.md) | 사전 initial/final stage, receptivity prior, motivation/barrier에 조건부 stage transition, 고정 스케줄 baseline | 역방향 stage transition과 잘못된 target 교정, counterfactual의 타당성 |
+| [AVP](validation_paper/adaptive_virtual_patient.md) | skill-conditioned 누적 progression, 고정 스케줄/gradual prompt/state-in-context를 이미 오프라인 비교 | negative therapist actions에 따른 rollback, 성격별 transition function, 다차원 변화 |
+
+### 설계 후보의 더 엄격한 정의 (아직 제안 수준)
+
+**Macro-trajectory as a revisable prior, not a guaranteed endpoint.** 초기 목표가 '초반 경계→점진적 신뢰 회복'인 경우에도, 실제 상담이 불성실하거나 공격적이면 회복을 보류·실패시키고 그 판단 근거를 유지하도록 한다. 반대로 맞춤형 적절 개입은 일부 내담자에게 빠른 회복, 다른 내담자에게 느린 회복을 허용한다.
+
+- **Controllability**: 대화 주제/허용 단계/핵심 이벤트의 진행을 어느 정도 유도할 수 있는가? 목표 신뢰값 매턴 일치율을 곧바로 좋은 지표로 삼지 않음.
+- **Intervention responsiveness**: 동일한 hidden state·profile에서 개입을 바꾸었을 때 불합리한 과잉 순응 없이 적절하게 변화하는가?
+- **Personality-conditioned pace**: 성격별 기울기가 무작위 고정관념이 아니라 근거 있는 개인차를 구현하는가?
+- **Recoverability**: 신뢰 훼손 후 적절한 repair에 응답할 수 있고, 충분한 repair가 없으면 불필요한 호전이 없는가?
+- **Failure to progress when justified**: 문제 해결이 늦어져도 시뮬레이터가 잘못된 목표를 강제하지 않는가?
+
+### 매우 중요한 실험 중복 경고
+
+AVP의 Appendix D.1은 **SCHEDULE / SVP-GRADUAL / STATE-IN-CONTEXT / SVP-MATCHED / AVP**의 *5-arm replay*를 이미 사용했다. MASC에도 hard schedule 기준선이 있다. 그러므로 새로운 논문의 방법/실험이 **단순 Hard-vs-Free-vs-Soft 3-way 비교로 끝나면** 기존 연구와 직접 겹치고 약하다.
+
+### 제안되는 failure discovery (새 구현 강행 전)
+1. 같은 내담자와 macro 목표를 지정한 뒤, 적절한 개입·장기간 부적절한 개입·초반 부적절→후반 repair 등 **3개 intervention sequences**를 통제한다.
+2. PATIENTACT·CALM-IT·MASC·AVP에서 지원 가능한 의미에 맞춰 동일 조건을 재현; 각 논문에서 **애초에 다루지 않는 차원**은 '실패'로 기록하지 않고 평가 범위 밖으로 명시.
+3. 동일 목표를 지키려다 내담자가 **불합리하게 조기 진전하는지**, 반대 방향 개입을 받고 **적절히 후퇴하는지**, 반복된 repair 이후 속도 차이를 보이는지 기록한다.
+4. 기존 강한 방법들이 이미 문제를 해결하거나 이 시나리오의 임상적 타당성 기준을 만들 수 없다면 B1을 축소/폐기한다.
+
+**다음 문헌 위험:** Evoke-Sim, RESISTCLIENT, Psycheval 및 2026년 실제 상담에서 therapist-client dynamics를 추정한 연구. 선행연구 12편만으로 '조정 가능한 macro prior'가 분야 전체에 없다고 확언하지 않는다.

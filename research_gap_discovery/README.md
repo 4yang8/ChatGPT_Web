@@ -44,8 +44,9 @@ Research Gap 후보 정의 (아직 검증 전)
 
 - [iterative_validation_protocol.md](iterative_validation_protocol.md) — 반복 검증 절차와 판정 기준
 - [gap_register.md](gap_register.md) — Research Gap 후보별 증거, 반증 조건, 다음 조사
-- [validation_paper/README.md](validation_paper/README.md) — 현재 전문 검토한 2026년 논문 8편의 비교·분석 링크
+- [validation_paper/README.md](validation_paper/README.md) — 현재 전문 검토한 2026년 논문 12편의 비교·분석 링크
 - [validation_paper/PDF_SOURCES.md](validation_paper/PDF_SOURCES.md) — PDF 원본·출처·버전 추적
+- [iteration_04_synthesis.md](iteration_04_synthesis.md) — **신규 4편 심층 검토 및 12편 기준 Research Gap 재판정**
 
 ## 해석 원칙
 

@@ -27,7 +27,7 @@ Research Gap 후보를 확인·반박하기 위해 검토하는 논문 원문과
 8. 검증 필요 사항 및 참고 논문
 
 
-## 2026 논문 추가 분석 (2차, 총 8편)
+## 2026 논문 추가 분석 (2차, 누적 8편)
 
 | Paper | PDF | 분석 | 핵심 검증 |
 |---|---|---|---|
@@ -44,3 +44,17 @@ Research Gap 후보를 확인·반박하기 위해 검토하는 논문 원문과
 ## Track B Soft Trajectory 관련 추가 검증 (전문 미검토)
 
 [trajectory_related_2026_to_validate.md](trajectory_related_2026_to_validate.md)에 PatientAct, Adaptive Virtual Patient, Evoke-Sim, RESISTCLIENT, Psycheval 등의 **검증 질문과 PDF 링크**를 관리한다. 이 논문들은 현재 분석 완료 8편에 **포함되지 않는다**. 최신 초록·검색 결과의 잠정적 유사성은 해당 PDF의 방법/실험에서 확인해야 한다.
+
+
+## 2026 논문 추가 분석 (3차, 누적 12편)
+
+| Paper | PDF 원본 | 분석 문서 | 특히 중요한 검증 질문 |
+|---|---|---|---|
+| MASC | [arXiv:2610.08250v1](https://arxiv.org/pdf/2610.08250v1) | [masc.md](masc.md) | Schedule-ST와 조건부 단계 진행 비교; latent state–utterance matching; 과다한 multi-agent retry |
+| CALM-IT | [arXiv:2601.10085v3](https://arxiv.org/pdf/2601.10085v3) | [calm_it.md](calm_it.md) | goal+rapport+emotion+state의 누적 조정, 개인차, OLMo-3.1-32B downstream SFT |
+| PATIENTACT | [arXiv:2608.12750v2](https://arxiv.org/pdf/2608.12750v2) | [patientact.md](patientact.md) | 애착 유형별 trust delta, disclosure timing, resistance; 임상 평가 |
+| Adaptive Virtual Patient (AVP) | [arXiv:2606.10051v2](https://arxiv.org/pdf/2606.10051v2) | [adaptive_virtual_patient.md](adaptive_virtual_patient.md) | SEM 기반 skill-conditioned disclosure pace, Schedule/Gradual Prompt/State-in-context replay |
+
+[12편 종합 비교](comparison_matrix.md) · [Gap Iteration 4](../gap_register.md) · [Iteration 4 상세 종합](../iteration_04_synthesis.md)
+
+참고: 새 4편의 PDF도 사용자 채팅 첨부본을 근거로 분석했다. **GitHub에는 Markdown 분석과 해시를 기록했으며 PDF 원본 바이너리를 올렸다는 의미는 아니다.**

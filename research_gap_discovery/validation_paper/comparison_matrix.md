@@ -64,3 +64,30 @@
 | Graph2Counsel (§7) | 고정 CPG(세션 중 변화 없는 스냅샷) | 생성 문맥 반응은 가능, 매턴 temporal CPG 갱신은 없음 | 반복 변화·장기 궤적은 논문이 향후 과제로 명시 |
 
 **아직 전문 검증 전:** PatientAct(애착/신뢰 업데이트 관련 잠정 유사성), AVP(행동-자기개방 적응 관련 잠정 유사성), Evoke-Sim(단계·정보 공개). 상세 [검증 목록](trajectory_related_2026_to_validate.md). "해당 논문과 완전히 중복"이라고 판단하지 않는다.
+
+
+---
+
+## Iteration 4 — 신규 4편 직접 비교: MASC / CALM-IT / PATIENTACT / AVP (2026-10-29)
+
+| 비교 차원 | MASC | CALM-IT | PATIENTACT | AVP |
+|---|---|---|---|---|
+| 본질 | MI 내담자 상태·발화 **self-calibration** + benchmark | 내담자–상담사의 양측 누적 conversational dynamics | 5Ps/애착 기반 dynamic memory·trust gating·저항 | 실제 상담 기록 SEM에서 추정한 skill→disclosure 속도 관계 |
+| 상위 궤적/목표 | 프로필 initial/final stage, 동기·신념 장벽; 3단계 | overarching session goal + 매턴 current goal | 정해진 목표 trust curve 없음; 개인적 trigger·기억 공개에 따른 흐름 | 목표 **G→M→H**의 누적 상승; threshold로 타이밍 제어 |
+| 개인차에 따른 속도 | receptivity prior가 action 확률 변경; Big Five는 session constraint | rapport delta가 배경·신뢰 성향·trauma/history에 조건화 | **애착 스타일별 trust gain/loss**를 명시적으로 변경 | Sam/Alex 반응 차이는 있지만 **공통 update weights**(속도 계수 별도 적합 X) |
+| Intervention responsiveness | counselor가 motivation·belief barrier를 다룬 경우 stage 상승 | 상담사 반응 appraise 후 trust/readiness/emotion/goal 갱신 | reaction/behavior/trust update, 신뢰별 memory disclosure | empathy/exploration에 따라 누적 disclosure state 상승 |
+| 나쁜 개입 후 후퇴/회복 | 명시 stage rollback 없음 (Eq.3) | Δrapport 음수 허용, 변화 상태·목표 갱신 | trust 감소·증가 모두 가능 | 누적 점수의 기대값은 비감소; 명시적 신뢰 붕괴→회복 없음 |
+| Fixed schedule와 비교? | **Schedule-ST** baseline(각 단계 10턴 고정) | 단계·시스템 자체 비교/ablation, 정적 macro-trajectory 1:1 비교는 아님 | 3종 simulator baseline, 고정스케줄 명시 비교 없음 | **SCHEDULE+SVP-GRADUAL+STATE-IN-CONTEXT** 포함한 5-arm offline replay |
+| 주 평가 | real MI의 EE/PS/CA **marginal label KL**, profile, personality/receptivity | MITI, trajectory-independent length robustness, licensed psychologists, redirection | 심리학 배경 평가자 10명(대화별 3인), realistic resistance/disclosure | clinicians+students 20명, 80회 상담, 실대화 기반 SEM, disclosure coupling |
+| 상담 LLM을 데이터로 학습? | **아니오** | **예**, OLMo-3.1-32B fine-tune, KMI에서 9개 중 5개 지표 유의 개선 | **아니오** | **아니오** |
+| 주요 수치 | Hetero action/emotion/state KL **0.06/0.27/0.06** | CI Effectiveness **4.45**, CI-NC **3.67**; SFT Reflection **+0.502**, Partnership **+0.900** | Human disclosure **4.15**, resistance **3.82**, realism **4.15** | Text-state match **0.651** vs static **0.311**, exploration effect **+0.281** |
+| 해석상 주의 | 예측 target label 일치 ≠ 상담사 개입 반응의 인간적 인과 타당성; Hetero model confound | 두 에이전트 효과를 같이 측정; 8,232개 합성 vs 실제 상담 상태 전이 외부 검증 없음 | 15턴·40 시나리오, attachment stereotype 가능, downstream 미검증 | 두 persona, monotonic disclosure, 상호작용 session-level skill sensitivity 비유의 |
+
+### 강한 중복과 남은 질문
+- **B1 기본 조합(성격/신뢰 성향과 개입에 따른 속도)** → PATIENTACT, CALM-IT, AVP에 **이미 직접 존재**.
+- **B1 (고정 스케줄과 조건부 전이 비교)** → MASC의 Schedule-ST와 AVP의 offline 5-arm replay에 **이미 부분 실험 존재**.
+- **B3(내부 상태와 발화가 일치해야 한다)** → MASC construct-level judge+retry, AVP P3 측정, PATIENTACT state/action signal로 강한 중복.
+- **A1(더 풍부한 상호작용 시뮬레이터로 학습)** → CALM-IT이 OLMo-3.1-32B SFT 후 KMI 내 학습 전이도 보고. 단 **matched-training data generator ablation**은 하지 않았으므로 attribution 문제는 남음.
+- **잠정 Narrowed B1:** 정해진 고수준 궤적은 **hard required state가 아니라 선호 또는 허용 가능한 범위**로만 두고, 상담사의 개입이 이를 위반하는 경우 **정당한 stall/rollback/repair**를 허용하며, 이 균형을 여러 profile에서 *같은 조건의* counterfactual로 평가할 수 있는가? CALM-IT/PATIENTACT/MASC/AVP 대비 실제 실패가 있는지 확인 전에는 Gap 확정 금지.
+
+상세: [Iteration 4 종합](../iteration_04_synthesis.md) · [논문별 개별 분석](README.md).

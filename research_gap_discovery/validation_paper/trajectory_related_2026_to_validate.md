@@ -38,3 +38,15 @@
 - [Graph2Counsel](graph2counsel.md): 고정 CPG, 동적 갱신 미구현
 
 다음 행동: PDF 전문 업로드 → 각 논문별 MD 심층 분석 → [Gap Register](../gap_register.md)의 B1 유사성·차별성·실증 조건 재판정.
+
+
+---
+
+## 검토 현황 갱신: 2026-10-29 Iteration 4
+
+- **PATIENTACT**: [전문 분석 완료](patientact.md). 애착 유형별 신뢰 증감 폭/속도, trust-gated memory, 다양한 저항 행동을 **이미 구현**. '성격별 속도' 자체 신규성 기각.
+- **Adaptive Virtual Patient (AVP)**: [전문 분석 완료](adaptive_virtual_patient.md). 개입 skill과 누적 개방 단계, schedule 및 gradual prompt 등 5-way replay **이미 비교**. 다만 단조 진행·두 persona·오프라인 재생 한계.
+- **MASC**: [전문 분석 완료](masc.md). fixed Schedule-ST baseline, receptivity-aware action prior, counselor-conditioned stage transition과 judge/retry 이미 제공.
+- **CALM-IT**: [전문 분석 완료](calm_it.md). 인물 배경·관계 과거에 따른 Δrapport, 상위 session goal+현재 goal, 상담사 개입에 따른 다차원 상태 갱신, OLMo-3.1-32B SFT 보고.
+
+앞서 표의 PATIENTACT/AVP의 '전문 업로드 필요'는 **작성 당시의 기록**이며 현재는 분석 완료. 아직 전문 검토가 필요한 2026년 논문은 Evoke-Sim, RESISTCLIENT, Psycheval, 추가로 AVP가 참조한 [Empirical Modeling of Therapist-Client Dynamics](https://arxiv.org/abs/2602.12450) 및 [PatientHub](https://arxiv.org/abs/2602.11684) 등이다. 이 링크는 이번에 읽은 PDF References에서 추출했으며 **추가 논문의 내용은 아직 검토하지 않았음**.
