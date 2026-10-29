@@ -22,3 +22,15 @@
 
 ## PDF 검증 권장
 업로드 후 SHA-256을 비교해 원문 무결성을 보장한다. 논문 개정판·학회 버전과 arXiv 버전은 별도 관리하고, 분석 문서에 참조한 버전을 명시한다.
+
+
+## 2026년 2차 검토 원본 4편 (채팅에 업로드, 2026-10-29)
+
+| 논문 | PDF 첨부 파일명 | 크기(byte) | SHA-256 | 원문 |
+|---|---|---:|---|---|
+| CARS/STREAMS | 2606.04389v1.pdf | 1,562,185 | 66e3c7827792c9ff386679700cc57d8ad8025f5cdac1b712c58380ad7ba4a3ef | [arXiv](https://arxiv.org/pdf/2606.04389) |
+| Graph2Counsel | 2604.20382v2.pdf | 1,510,210 | 66b452724042b8c2357752b6c8bce229f774b48a85f744ef4a48e14d7f02d21d | [arXiv](https://arxiv.org/pdf/2604.20382) |
+| TherapyGym | 2603.18008v1.pdf | 1,563,979 | 8d90f8f8e6e4ae65dcfd5c9c6a89a7251f67c2ba8bc6bf2c721df7fc7e9686fa | [arXiv](https://arxiv.org/pdf/2603.18008) |
+| PsyChain | 2026.findings-acl.1831.pdf | 2,871,677 | c87548ee90587e490f90abfb773162240ac1d0a6bbd44e78c635a149e4e54815 | [ACL Anthology](https://aclanthology.org/2026.findings-acl.1831.pdf) |
+
+**GitHub PDF 상태:** 원본 바이너리 업로드는 이번 작업에 포함되지 않았다. 분석 Markdown만 GitHub에 직접 저장했고, PDF의 원본 바이트는 현재 대화 첨부 파일에 존재한다.
