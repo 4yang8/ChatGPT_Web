@@ -25,3 +25,17 @@ Research Gap 후보를 확인·반박하기 위해 검토하는 논문 원문과
 6. 무엇을 입증했는가 vs 입증하지 않았는가
 7. 우리 Gap과의 중복·반박·추가 연구 질문
 8. 검증 필요 사항 및 참고 논문
+
+
+## 2026 논문 추가 분석 (2차, 총 8편)
+
+| Paper | PDF | 분석 | 핵심 검증 |
+|---|---|---|---|
+| When Clients Stop Following (CARS/STREAMS) | [arXiv:2606.04389](https://arxiv.org/pdf/2606.04389) | [cars_streams.md](cars_streams.md) | CCD 기반 저항 시뮬레이션, strategic RL, 자동평가 mismatch |
+| Graph2Counsel | [arXiv:2604.20382](https://arxiv.org/pdf/2604.20382) | [graph2counsel.md](graph2counsel.md) | CPG 기반 합성+SFT, static representation, CoT/MA 비용 |
+| TherapyGym | [arXiv:2603.18008](https://arxiv.org/pdf/2603.18008) | [therapygym.md](therapygym.md) | CTRS/safety judge + multi-turn GRPO |
+| PsyChain | [Findings ACL 2026](https://aclanthology.org/2026.findings-acl.1831.pdf) | [psychain.md](psychain.md) | 단계·성격·안전성 기반 multi-agent synthesis+8B SFT |
+
+현재 논문 원본 PDF는 이 채팅에 업로드됐으며 **GitHub에는 분석 Markdown을 저장한 상태**다. PDF 자체가 GitHub에 업로드됐다는 뜻은 아니다. 원본 해시/버전: [PDF_SOURCES.md](PDF_SOURCES.md).
+
+비교 요약: [comparison_matrix.md](comparison_matrix.md) / 후보 Gap 판정: [gap_register.md](../gap_register.md).
