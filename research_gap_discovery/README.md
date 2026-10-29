@@ -16,6 +16,15 @@
 
 세부 기록: [research_questions_and_context.md](research_questions_and_context.md)
 
+## Research Gap 탐색의 두 트랙 (2026-10-29 추가)
+
+- **Track A — Question/Empirical Gap:** 기존 연구가 충분히 답하지 못한 중요한 질문. 현재 선두 후보는 시뮬레이터의 개입-반응 충실도가 상담사 학습에 제공하는 독립적 가치.
+- **Track B — Methodological Gap:** 기존 연구와 **같은 목표(더 정교한 내담자)**를 공유해도 됨. 기존 솔루션에서 검증 가능한 실패 조건을 찾아 새로운 메커니즘으로 개선하는 접근.
+- **Track B의 구체적 아이디어:** [Soft Trajectory — 성격·개입 조건부 유연한 심리 궤적](track_b_soft_trajectory.md). 사전 궤적은 상담의 큰 방향이고, 실제 속도·후퇴·회복은 내담자의 개인차와 실제 개입에 좌우되도록 한다.
+- [Track B 방법론 후보·Failure Discovery 계획](track_b_methodological_gaps.md) · [추가 2026 문헌 검증 목록](validation_paper/trajectory_related_2026_to_validate.md)
+
+**중요:** Tool/Planning/Agentic은 독립적인 Research Gap이 아니라 **선택된 가설을 구현하기 위한 수단**이다. 궤적 메커니즘 또한 아직 확정 방법이 아니며 기존 방법 대비 실패가 검증되어야 한다.
+
 ## Iterative Research Gap Discovery & Validation
 
 ```text
@@ -35,7 +44,7 @@ Research Gap 후보 정의 (아직 검증 전)
 
 - [iterative_validation_protocol.md](iterative_validation_protocol.md) — 반복 검증 절차와 판정 기준
 - [gap_register.md](gap_register.md) — Research Gap 후보별 증거, 반증 조건, 다음 조사
-- [validation_paper/README.md](validation_paper/README.md) — 논문 4편 비교 매트릭스와 논문별 분석 링크
+- [validation_paper/README.md](validation_paper/README.md) — 현재 전문 검토한 2026년 논문 8편의 비교·분석 링크
 - [validation_paper/PDF_SOURCES.md](validation_paper/PDF_SOURCES.md) — PDF 원본·출처·버전 추적
 
 ## 해석 원칙

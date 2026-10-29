@@ -39,3 +39,8 @@ Research Gap 후보를 확인·반박하기 위해 검토하는 논문 원문과
 현재 논문 원본 PDF는 이 채팅에 업로드됐으며 **GitHub에는 분석 Markdown을 저장한 상태**다. PDF 자체가 GitHub에 업로드됐다는 뜻은 아니다. 원본 해시/버전: [PDF_SOURCES.md](PDF_SOURCES.md).
 
 비교 요약: [comparison_matrix.md](comparison_matrix.md) / 후보 Gap 판정: [gap_register.md](../gap_register.md).
+
+
+## Track B Soft Trajectory 관련 추가 검증 (전문 미검토)
+
+[trajectory_related_2026_to_validate.md](trajectory_related_2026_to_validate.md)에 PatientAct, Adaptive Virtual Patient, Evoke-Sim, RESISTCLIENT, Psycheval 등의 **검증 질문과 PDF 링크**를 관리한다. 이 논문들은 현재 분석 완료 8편에 **포함되지 않는다**. 최신 초록·검색 결과의 잠정적 유사성은 해당 PDF의 방법/실험에서 확인해야 한다.

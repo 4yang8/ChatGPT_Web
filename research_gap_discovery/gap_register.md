@@ -74,3 +74,38 @@ AnnaAgent, Consistent Client Simulation for MI, Patient-Ψ, Roleplay-doh, CARE-B
 따라서 계획·기억·도구의 ablation은 그 기능의 선택이 논문에서 주장하는 기여에 실제로 필요한 경우에 한해 실시한다. **'27B+Tool이 프론티어 모델보다 더 낫다'는 사전 가설을 강제하지 않는다.** 비용/효율 지표도 선택한 Research Gap에 관련될 때에만 보조 증거로 제시한다.
 
 앞선 기록의 G3 표기는 **후보에서 철회된 역사적 표기**이며 앞으로는 M1로 부른다.
+
+
+---
+
+## Iteration 3 — Track A/B 병렬화 및 Soft Trajectory 아이디어 (2026-10-29)
+
+**이전 결론의 보완:** 기존 연구와 **'동적·정교한 내담자'라는 문제 자체가 겹쳐도 된다.** 기존 솔루션의 확인 가능한 한계를 더 나은 메커니즘으로 극복하는 **Track B(Methodological Gap)**를 Track A(새로운 질문/미검증 효과)와 **병렬로** 탐색한다. 방법의 차이만으로 신규성 확정은 불가하고, 기존 방법의 특정 실패를 실험적으로 입증해야 한다.
+
+| ID | 트랙 | 문제·가설 후보 | 선행연구와 겹치는 지점 | 검증 상태 |
+|---|---|---|---|---|
+| A1 (기존 G1 축소) | A | 개입 조건부 내담자 반응의 fidelity가 데이터량·다양성을 통제한 상태에서 상담사 정책 학습에 **고유한** 가치를 제공하는가? | PUPPET, CARS, TherapyGym, PsychePass, PsyChain, Graph2Counsel | **Keep as hypothesis**, 추가 중복 검토 |
+| B1 / BT1 | B | **목표 궤적의 통제성**을 확보하면서 **성격·상담 개입에 조건부로 실제 진행 속도·방향·회복 여부가 달라지는** 유연한 상태 전이 방법 | PsyCLIENT의 사전 행동 궤적, PsyChain의 단계/감정 개선 지시, PUPPET의 사전 규칙, CARS의 CCD 조건부 저항 | **New candidate — Full-text + 실험 확인 전** |
+| B2 | B | 빠르게 변하는 감정과 느리게 변하는 신뢰·신념·관계가 다중 턴/다중 세션에 걸쳐 일관적으로 조정되는가? | AnnaAgent(미검토), CARS 단일 세션, Graph2Counsel 고정 CPG | **Unknown — 2026·기존 논문 재검증 필요** |
+| B3 | B | 내부 심리 상태의 변경이 최종 발화의 행동 양상에 **실제로 반영되는지** 검증·개선할 방법 | PUPPET 상태→발화, Q3a 단계별 출력 중복 사례 | **Unknown — 단독 ACL 기여는 불확실** |
+
+**B1 사용자 제안 (정확한 취지):** 고정된 시간표처럼 턴마다 강제되는 궤적 대신, 예컨대 '초반 신뢰 하락 후 후반 회복' 같은 **큰 틀의 참고 궤적**을 둔다. 동일한 큰 흐름을 부여해도 내담자의 성격/신뢰 성향에 따라 **진행 속도**가 달라지고, 실제 상담사의 개입이 후퇴·회복을 조절한다. **무조건 후반 신뢰 회복을 강제해서는 안 되는지**는 별도 설계 논점이며, 회복 조건을 충족하지 못하면 회복되지 않을 수 있는 설계는 논의 중인 확장안이다.
+
+**아직 결정하지 않은 것:** 사전 궤적은 목표 경향인가, 허용 상태 범위인가, 단계별 전이 조건인가? 진행이 잘못되면 목표에서 벗어날 수 있는가? 개인차와 효과를 수치로 정의할 근거가 있는가? Soft Trajectory가 PUPPET/CARS/PatientAct/AVP보다 나은 조건이 정말 존재하는가?
+
+### B1의 반증 중심 진단 (제안, 확정 실험 프로토콜 아님)
+1. 같은 내담자 프로필·시작 상태·상담 이력을 고정하고 상담사의 개입 유형(공감/중립/성급한 해석/부적절한 압박)을 변화시킨다.
+2. **Hard Trajectory / Free Dynamics / Soft Trajectory**를 같은 backbone과 가능한 한 같은 입력·추론 예산에서 비교한다.
+3. 동일 개입을 **서로 다른 성격/신뢰 성향**에 제공해 전이 크기·시점·부정/긍정 민감도가 다르게 나타나는지 확인한다. 인간 행동에 관한 성격 일반화는 경험적 근거 없이는 주장하지 않는다.
+4. 발화 자연스러움, 반응 타당성, 타당한 방향·속도 변화, 진행 통제성, 불필요한 강제 회복, 상태–발화 일관성, OOD 대응을 **분리 측정**한다.
+5. 전문가가 판단한 반사실적 타당성은 실제 인간의 counterfactual ground truth와 다르다. 기존 방법이 해당 조건에서 실패하지 않으면 Gap을 수정/폐기한다.
+
+### 즉시 우선 검증할 새 2026 문헌
+- **PatientAct** — 성격/애착 유형별 신뢰 변화와 공개 제어가 Soft Trajectory와 얼마나 겹치는지.
+- **Adaptive Virtual Patient (AVP)** — 상담사의 행동에 따라 점진적 자기개방이 달라지는지와 그 전이식/개인차.
+- **Evoke-Sim** — 단계/정보 공개 제어와 상담사의 개입 유연성.
+- **RESISTCLIENT / Psycheval** — 개입 조건부 저항 및 장기 평가 중복 검증.
+
+**주의:** PatientAct·AVP·Evoke-Sim은 본문 전문 검토 전이며, 선행연구와 '정확히 겹친다'는 결론을 아직 내리지 않는다. 근거 범위와 검토 질문은 [validation_paper/trajectory_related_2026_to_validate.md](validation_paper/trajectory_related_2026_to_validate.md)에 정리했다.
+
+자세한 사용자 아이디어와 제안 설계: [track_b_soft_trajectory.md](track_b_soft_trajectory.md). B 트랙 전체: [track_b_methodological_gaps.md](track_b_methodological_gaps.md).
