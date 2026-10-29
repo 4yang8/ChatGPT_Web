@@ -12,9 +12,9 @@
 | PsyCLIENT | `PsyCLIENT - Client Simulation via Conversational Trajectory Modeling for Trainee Practice and Model Evaluation in Mental Health Counseling(4).pdf` | 2,986,393 | `2d9e899254f2664899d8159480c2c2562455913c9f1faa2de73e0e1864c7b270` |
 
 ## 공식 원문 / 서지 링크
-- **PUPPET:** https://aclanthology.org/2026.acl-long.143/ (서지 ID 확인 필요; 정확한 본문 식별자는 ACL Anthology에서 검색해 검증할 것)
-- **PsychePass:** https://aclanthology.org/2026.findings-acl.1993/ 
-- **DyCoP:** AAAI-26 (검색: `Dynamic Cognitive Planning for Cognitive-Functional Dialogue: A Case Study in Emotional Support Conversation`)
+- **PUPPET:** https://aclanthology.org/2026.acl-long.121/ (공식 PDF: https://aclanthology.org/2026.acl-long.121.pdf)
+- **PsychePass:** https://aclanthology.org/2026.findings-acl.1993/ (공식 PDF: https://aclanthology.org/2026.findings-acl.1993.pdf)
+- **DyCoP:** https://ojs.aaai.org/index.php/AAAI/article/view/40478 (공식 PDF: https://ojs.aaai.org/index.php/AAAI/article/download/40478/44439)
 - **PsyCLIENT:** https://arxiv.org/abs/2601.07312 (v3, 2026-10-22)
 
 ### 원문 업로드 상태
