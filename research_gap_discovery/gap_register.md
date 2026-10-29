@@ -1,6 +1,6 @@
 # Research Gap 후보 레지스터 — 2026-10-29
 
-> 모두 **가설 후보**이며, 네 편만으로 선행연구 전체의 공백을 단정할 수 없음.
+> 모두 **가설 후보**이며, 이 문서의 현재 검토 대상은 2026 논문 8편이다. 8편만으로도 전체 선행연구의 공백을 단정할 수 없음.
 
 | ID | 후보 Gap | 의미 | 충돌하는 선행연구 | 현재 상태 |
 |---|---|---|---|---|
@@ -27,3 +27,39 @@
 
 ## 다음 우선 검증 논문
 AnnaAgent, Consistent Client Simulation for MI, Patient-Ψ, Roleplay-doh, CARE-Bench, ClientCAST, Ψ-Arena, ESC-Eval, 관련 synthetic-data quality vs downstream transfer 연구. **읽기 전에는 어느 논문도 Gap을 해결하지 않았다고 주장하지 않는다.**
+
+
+---
+
+## Iteration 2 — 2026-10-29: 2026 논문 4편 추가, 총 8편 재검토
+
+검토한 신규 PDF: [CARS/STREAMS](validation_paper/cars_streams.md), [Graph2Counsel](validation_paper/graph2counsel.md), [TherapyGym](validation_paper/therapygym.md), [PsyChain](validation_paper/psychain.md).
+
+| ID | 이번 검증에서 확인한 직접 중복/반론 | 현재 판정 | 정확하게 좁힌 형태 |
+|---|---|---|---|
+| G1 | CARS/STREAMS: 동적 저항 내담자와 전략 RL 연결. Graph2Counsel/PsyChain: 구조 기반 합성→8B SFT. TherapyGym: 시뮬레이터→4B GRPO. | **NARROW** | **동일 데이터량·주제·행동 다양성·학습예산·상담사/보상 정책을 통제했을 때, 개입에 대한 반응/상태 변화를 더 잘 모델링하는 시뮬레이터가 미지의 상담사·상황에서 독립적 학습 이익을 제공하는가?** |
+| G2 | PUPPET: 전문가 규칙 기반 intervention→state→response. CARS: CCD·trigger 기반 resistance dynamics. | **REJECT as broad novelty** | 명시적 개입-상태 전이 *자체* 신규성 주장 폐기. 제한된 CBT/CCD 범위 밖, 개인별 변화·다중 세션에서의 **정량 OOD 반응 일반화** 가능성은 후속 검증 후보 |
+| G3 | CARS 0.6B Thinker+8B Presenter; DyCoP 7B; PsyChain 8B SFT, Graph2Counsel의 costly CoT/MA. | **UNKNOWN/REFRAME** | 27B+Tool 구조의 **품질–비용 Pareto frontier**(실제 calls/tokens/wall time/실패율)나 **수정 가능한 상태/재현성**을 동등한 예산·동일 프롬프트의 강한 baseline보다 개선할 수 있는가? |
+| G4 | DyCoP의 Planner 제거 손실 작음. Graph2Counsel은 CoT·MA가 거의 2배 비용 또는 그 이상인데 효과 제한. | **NARROW, method-side** | 특정 복잡성에서 **필요한 플래닝만 하는 구조**가 동일 심리적 응답 타당성에 필요한 호출 수를 줄이는가? 계획 자체의 기여와 노트 작성 변화 반드시 분리 |
+| G5 | CARS는 고협조 시뮬레이터의 **평가 왜곡**을 이미 명시. PsyChain의 prompt는 감정 개선·최종 합의를 미리 요구. | **UNKNOWN; no broad novelty** | 시뮬레이터의 평가자가 관찰하는 **개입 민감도/비단조 심리 변화**가 scripted-progress bias 없이 타당하게 측정되는가? 전문가·실제 데이터 기반 평가 지표가 기존 CARS/PUPPET/Psycheval 대비 무엇을 더 구별하는가? |
+
+### 연구 방향에 주는 실질적인 결론
+1. '내담자 시뮬레이터를 만들고 그 데이터로 상담 모델 학습'은 2026년만 보아도 여러 논문과 겹치므로 **주 Contribution으로는 부족**하다.
+2. '내담자 저항이 상담 개입에 따라 달라진다'는 CARS에서 다뤘으므로 **저항 하나만으로는 신규성 부족**.
+3. **Counterfactual Intervention Fidelity**(동일 내담자·히스토리에서 상담 개입만 바꿨을 때 다음 상태·자기개방·저항의 적합성)와 **Downstream Transfer**(동일 양/분포의 훈련에서 훈련된 상담 모델 성능)의 관계를 직접 연결하는 **설명적/인과적 실험**이 후보.
+4. 특히 PsyChain의 **scale-matched Combined**는 단순히 데이터 *양*만으로 비판할 수 없게 만드는 대조군이다. 그러나 역할/전문성/safety/단계 지시/생성 분포 전체가 달라지므로 특정 동적 내담자 요인의 독립효과는 입증하지 않는다.
+5. Graph2Counsel의 GC+CoT/GC+MA 부정 결과는 **우리 Q3a 필수 플래닝**의 합리성을 미리 긍정할 수 없다는 근거. Q3b의 선택 기준/비용/실제 판단 갱신을 별도 분석할 것.
+
+### 결정적 실험 초안
+- **Simulator baseline**: 동일 27B 프로필 prompt-only / +memory & explicit state / +intervention-conditioned state / +conditional planning; same compute budgets. Frontier single-model comparator는 보조축.
+- **Counterfactual probe**: 고정 초기 상태+대화 이력; 전략이 다른 3–4개 치료사 개입(공감/성급한 해석/질문/불일치)을 입력. 독립 전문가가 state-change 방향·강도, disclosure timing, resistance appropriateness를 블라인드 평가. 참조 로그가 있으면 경험적 분포 비교도 별도 수행.
+- **Downstream factorial**: 동일 counselor-policy generator, topic/seed profile, turns/token/count 및 behavior distribution를 매칭; evaluator/RM, SFT/RL 초깃값·예산도 동일. **상태 전이의 개입 종속성만** 변경한 conditional-vs-shuffled/disabled 대조군 포함.
+- **Held-out**: 미지의 profile+문제+전략, 타 시뮬레이터·인간 평가자, 충분한 다중 세션 시나리오. 생성기·judge 공유로 인한 평가 누수 방지.
+- **Confound tracking**: state updater, goal-conditioned agenda, counselor generator, preset progress, safety module의 개별 ablation, 총 호출 수/비용, 응답 길이, 데이터 다양성/질.
+
+### 새로운 반증 문헌 조사(2026 최초 공개 확인 필요)
+- **RESISTCLIENT**, arXiv:2604.10507 — CARS가 직접 언급한 resistance-informed motivation reasoning.
+- **Psycheval**, arXiv:2601.01802 — multi-session & multi-therapy eval을 다뤄 G5와 충돌 가능.
+- 2026 논문 중 simulator fidelity factor의 matched downstream 비교가 실제 있는지 집중 조사.
+
+**주의:** 현재 위 내용은 논문 8편의 비교에 따른 **가설 상태**이며, 처음 공개일 및 실제 2026 논문 선행 결과의 범위를 추가 검증하기 전에는 "새로운 Research Gap 확정"으로 표현하지 않는다.
