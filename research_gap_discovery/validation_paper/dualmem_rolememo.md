@@ -31,3 +31,14 @@
 
 ## 현재 판정
 **B4: NARROW / 핵심 이론과 직접 중복, temporal utterance-grounded motive provenance가 남을 가능성**. 임상적 타당성/후속 대화 일관성은 향후 실험 대상. 이 문서만으로 새로움 확정 금지.
+
+
+---
+
+## Memory read/access 상세 (Iteration 6, §4.1–4.2, §5.1, pp.4–5)
+- **모든 query의 기본 경로**: `q→R(M,q)→fφ(p,q,R(M,q))`. 검색 자체를 할지/말지 스스로 결정하는 agentic gate는 논문에 별도로 명시되지 않음.
+- **Retrieval selection**: 모든 방법을 공정 비교하기 위해 Qwen3-Embedding-0.6B로 **top-10 relevant entries** 검색; Insight entry를 검색하면 연결된 Fact entry도 grounding을 위해 포함.
+- **Write/read 타이밍**: write 단계에서 `M_i=fθ(chunk_i,prior_memory,persona)`로 **사실과 해석** 생성. read 시에는 **현재 query와 관련된 이전에 저장된 해석을 선택해 제공**하는 것이지, 과거 사건의 현재 심리적 의미를 반드시 다시 갱신하는 것은 아님.
+- **B4 차이**: remembered insight = persona-grounded interpretation, not necessarily the speaker's intention committed **while producing that particular utterance**. 재해석의 출처·시점 검증이 필요.
+
+[4논문 read-policy 비교](../iteration_06_memory_access_and_temporal_reinterpretation.md).

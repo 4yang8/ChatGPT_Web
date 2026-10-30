@@ -1,6 +1,6 @@
 # Track B / B4 — Utterance-Grounded Episodic Intent Memory
 
-> 2026-10-30 · **Working Idea v0.2 — Gap 미확정, 2026 전문 검토 16편과 비교**
+> 2026-10-30 · **Working Idea v0.3 — Gap 미확정, 2026 전문 검토 16편과 비교**
 
 ## 1. 사용자가 제안한 핵심 문제 [User-proposed]
 
@@ -81,3 +81,44 @@
 **검증 조건:** CARS·DualMem-like 강한 baseline을 포함한 paired experiment에서 명확한 실패/개선 근거가 필요. 2025 Role-aware memory/CoT 선행은 추후 추가 검증하며, 단지 상담 도메인에 적용했다는 이유로 ACL 신규성이 보장되지 않는다.
 
 [16편 기준 종합 비교](iteration_05_synthesis.md) · [Gap Register](gap_register.md).
+
+
+---
+
+## 8. Iteration 6 — Memory content / access / temporal reinterpretation 구분 (2026-10-30)
+
+### 새로 명확해진 연구자 관점
+과거 발화 때의 생각을 **기록한다**는 것은 이후 발화 생성에서 이를 **참고할 가능성을 확보**하는 것이다. 모든 턴의 컨텍스트에 항상 포함할 수도 있고, 필요할 때만 검색·도구 호출·주입할 수도 있다. **메모리의 존재와 메모리 조회 정책은 별도 설계 변수**다.
+
+### 세 기능을 서로 혼동하지 않기
+1. **Historical preservation (당시 생각 보존):** 과거 `t`턴에 생성한 발화 `u_t`와 **그 시점에 설정된 비공개 생각/의도 `z_t^{then}`**를 원래의 역사적 기록으로 묶어 남긴다. **SAM**의 raw trajectory 보존 원칙이 가장 가까운 일반 선행.
+2. **Contextual recall / reconstruction (현재 필요에 따른 검색·정보 재구성):** `k>t`턴의 현재 목표 `q_k`에서 과거 `(u_t,z_t^{then})`의 관련 부분을 찾아 현재 컨텍스트에 전달한다. **SAM**은 `intent→selected page→focused reconstruction` 방식을 이미 구현. 이는 그때의 의도가 **지금 달라졌다는 심리적 재해석**과 동의어가 아니다.
+3. **Temporal reinterpretation (과거 경험의 현재 의미 갱신):** 새로운 상호작용으로 현재 내담자가 *당시의 의도를 어떻게 해석하는지* `r_{k←t}`를 새로 생성한다. 과거 기록 `z_t^{then}`은 **그때의 기록으로 보존**하고, 현재의 이해/평가 `r_{k←t}` 및 현재 목표·신념 `s_k`를 별도 관리한다. **DualMem**은 관찰된 사실의 persona-conditioned **write-time** 해석을 저장하는 강한 선행이지만, '같은 과거 사건에 대한 이후의 새 해석과 원래 해석을 동시에 유지'하는 **temporal revision 실험**은 명시적 주목적이 아니다.
+
+**출처 구분:** 위 3번의 명시적 상태/해석 분리와 같은 방법은 **우리의 가설적 설계 후보**이며, SAM·DualMem이 전체 연구영역에서 이를 수행하지 못한다고 확정한 것은 아니다. 사람의 실제 생각도 완전한 불변 원본은 아닐 수 있으며 여기서 '불변'은 **시뮬레이션에서 확정한 당시 내부 상태의 감사 가능한 기록**을 의미한다.
+
+### Memory access 선행의 네 유형
+
+| 선행 | 조회 실행 정책 | 선택 로직·전달 | 상담 B4와의 적용 시 주의 |
+|---|---|---|---|
+| **DualMem** | 평가 query마다 자동 검색(별도 '검색할지' 정책 없음) | Qwen3-Embedding-0.6B **top-10**, insight가 검색되면 연결된 facts도 동반 | 저장된 insight는 persona-conditioned 해석이지 당시 자기 발화 의도가 아님 |
+| **MRPrompt** | 매 응답마다 LTM+STM을 컨텍스트에 제공 | Magic-If 프롬프트가 현재 cue와 맞는 scene facet을 **내부에서 선택**, 외부 retrieval Tool 없음 | static schema; 대화 중 새 episodic private intent의 누적 테스트가 아님 |
+| **SAM** | **Agent가 필요할 때 memory tool 호출** | 항상 보이는 compressed cues → agent가 page/recall goal 지정 → memory model이 원본 page에서 관련 내용을 재구성하여 주입 | 과거 사고 기록 보존·조건부 조회 구현과 직접 비슷하지만 상담 발화 당시 motive의 심리적 진실성 보장은 아님 |
+| **SAMem** | test 시 **매 decision-step 조회** | 현재 state를 embedding cluster에 매칭, 높은 Q-value `thought` 선택 | 과거 자기 사건기억이 아니라 **재사용할 좋은 판단 방식** 선택. 학습 시 ε-greedy를 사용한다는 것은 test 시 선택적 호출과 다름 |
+
+**대화용 비교 선행**: CARS의 `{PLANNING}` 이전 감정·목표는 기본 입력으로 제공되고, CALM-IT은 요약/현재 goal/emotion/rapport/stage 등을 각 턴 갱신·전달한다. PATIENTACT는 activation tags + trust threshold로 retrieval/disclosure가 제한되며 **읽은 기억을 실제 발화로 공개해야 한다는 뜻은 아니다.**
+
+### Q3와 SAM의 유사성을 어디까지 주장할 수 있나?
+- **상대적으로 가장 가까운 것 = SAM의 'optional recall tool / 상황별 과거 정보 이용'이라는 Access 측면.** Q3는 `stage_client_update`, 선택적 `retrieve_client_memory`, `commit_client_utterance`, `update_client_notes`의 흐름을 갖는다.
+- Q3 노트가 **모든 발화의 당시 appraisal/motive를 turn_id와 함께 원본으로 보존하고, 이후 정확히 연결해 재조회할 수 있는지**는 아직 확인/검증된 메커니즘이 아니다.
+- **기억 내용(Content)**은 DualMem의 fact–insight 관점, **기억 접근(Access)**은 SAM의 selective recall 관점을 참고할 수 있으나, 두 기술을 결합했다는 사실만으로 Method novelty를 주장하지 않는다.
+
+### 실험의 두 축을 분리
+- **Experiment 1 — Content / Provenance:** access를 **oracle retrieval**로 고정하고 public history / 현재상태 / 사후 insight / 그 시점 발화별 private motive를 비교(토큰량, 모델, 이벤트 동일).
+- **Experiment 2 — Access policy:** content를 동일하게 유지하고 **always-injected / every-turn top-K / optional tool / hybrid recent-active+long-term episodic** 비교. 검색 누락률·오검색·효과·호출/지연/토큰 비용을 분리.
+- **Experiment 3 (추가 후보) — Temporal reinterpretation:** 같은 과거 `z_t^{then}`에 대해 후속 상담 개입의 증거만 바꾸고, `r_{k←t}`와 `s_k`가 합리적으로 변화하는지 시험. 과거 기록 자체를 덮어쓰거나(과거 왜곡) 과거 생각을 현재 신념으로 고정하는(경직) 양쪽 실패를 분리 평가.
+
+### 새롭게 제안하는 질문
+> **Can a simulated client preserve its originally committed private motive for an earlier utterance while updating its present interpretation of that episode as counseling interactions unfold, without retroactively rewriting the remembered motive?**
+
+이 질문은 B4의 **추가 하위 가설(B4-T)**이며, **확인된 Research Gap이 아니다**. 더 자세한 표와 논문별 근거: [Iteration 6](iteration_06_memory_access_and_temporal_reinterpretation.md).

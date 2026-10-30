@@ -26,3 +26,14 @@
 
 ## 판정
 **B4: DIRECT state–thought technique overlap, but different memory semantics/task objective**. 일반 기억 기술 발명은 주장하기 어렵고, utterance-linked temporal intent fidelity 및 상담 counterfactual 행동 타당성이라는 실험 질문으로 좁혀야 함.
+
+
+---
+
+## Memory read/access 상세 (Iteration 6, §3.2–3.3, pp.3–4, Appendix A)
+- **State index**: 현재 관찰 요약 `s_t`를 embedding-based online cluster에 매칭 (cosine threshold ≈0.85; 이 임계값은 cluster assignment 기준이지 retrieval optional gating이 아님).
+- **Memory selection**: `(s,thought,Q(s,thought))` 저장, 현재 state에 대한 `argmax Q(s,thought)`로 유용한 thought 선택.
+- **언제 사용?** Training 단계에서는 decaying ε-greedy로 새 생각 vs 저장된 Q-guided thought를 섞고, **Test에서는 매 의사결정 단계에서 최고 Q thought를 조회**하여 현재 행동 지침으로 주입.
+- **B4 차이**: 일반화한 thought는 특정 과거 발화 당시의 autobiographical motive 원본이 아니라 같은 상황에서 **적절한 결정을 돕는 policy heuristic**. 한 사람의 과거 주관적 의미를 재해석·갱신하는 mechanism 아님.
+
+[4논문 read-policy 비교](../iteration_06_memory_access_and_temporal_reinterpretation.md).

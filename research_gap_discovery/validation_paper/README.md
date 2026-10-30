@@ -72,3 +72,10 @@ Research Gap 후보를 확인·반박하기 위해 검토하는 논문 원문과
 | Memory-Driven Role-Playing (MDRP/MRPrompt) | [arXiv:2603.19313v1](https://arxiv.org/pdf/2603.19313v1) | [memory_driven_role_playing.md](memory_driven_role_playing.md) | 정적 scene facet의 thinking_pattern, 단일턴 continuation; 세션 중 의도 기억 생성/갱신 아님 |
 
 **새 Gap 후보:** [B4 — Utterance-Grounded Episodic Intent Memory](../track_b_utterance_grounded_intent_memory.md) · [Iteration 5 종합](../iteration_05_synthesis.md) · [Gap Register](../gap_register.md). 원본 PDF 바이너리는 이 대화에만 업로드되어 있고 GitHub에는 분석 Markdown·SHA-256을 저장함.
+
+
+## 기억 조회 정책과 과거 생각 재해석 비교 (2026-10-30)
+
+[Iteration 6 — memory access and reinterpretation](../iteration_06_memory_access_and_temporal_reinterpretation.md)에서 **DualMem(top-10), MRPrompt(prompt internal), SAM(optional tool), SAMem(per-state Q)**를 동일한 비교 축으로 정리했다. 개별 4편 분석에도 근거가 되는 §Method 및 실제 적용 범위를 추가했다.
+
+상담 내담자 관련 참조: [CARS](cars_streams.md)의 `{PLANNING}`, [CALM-IT](calm_it.md)의 이전/현재 목표와 대화 요약, [PATIENTACT](patientact.md)의 tag+trust gated disclosure.

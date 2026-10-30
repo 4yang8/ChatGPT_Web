@@ -44,3 +44,13 @@
 
 ## 6. 후속 확인
 동일 프로필·same counselor interventions에서 reward/progress 목표 vs negative intervention 역방향 효과를 정량 측정; 실제 session-level trajectory vs length robustness; stage 변화와 하위 emotion/trust coherence; 데이터 규모 및 비용 통제한 downstream baseline.
+
+
+---
+
+## Memory read 관련 참고 (Iteration 6)
+- **Appendix Algorithm A1, pp.14–15**: `UpdateSummary(Σ,M)` 후 이전 client `(c,g,e,ρ)`와 therapist response 평가 `q`를 이용해 다음 상태·goal·action을 갱신. 생성 대화 `u_P`는 `M`에 추가.
+- **Access type**: dialogue history+running summary+현재/이전 심리 변수 등을 각 턴의 함수 입력에 제공. 특정 과거 `u_t`에 대한 `why I said that` motive ledger를 외부 memory tool로 **선택 조회하는 로직은 명시되지 않음**.
+- **주의**: '이전 목표/상태를 유지'하는 것과 '과거 특정 발화 의도를 역사적 사건기억으로 회상'하는 것을 동일시하지 말 것.
+
+[Iteration 6 조회 비교](../iteration_06_memory_access_and_temporal_reinterpretation.md).

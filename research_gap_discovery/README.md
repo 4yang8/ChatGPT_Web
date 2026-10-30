@@ -47,7 +47,8 @@ Research Gap 후보 정의 (아직 검증 전)
 - [validation_paper/README.md](validation_paper/README.md) — 현재 전문 검토한 2026년 상담·시뮬레이션 12편 및 인접 에이전트 기억 연구 4편 (총 16편)의 비교·분석 링크
 - [validation_paper/PDF_SOURCES.md](validation_paper/PDF_SOURCES.md) — PDF 원본·출처·버전 추적
 - [iteration_04_synthesis.md](iteration_04_synthesis.md) — 2026 상담·시뮬레이션 12편 기준 Research Gap 검증
-- [iteration_05_synthesis.md](iteration_05_synthesis.md) — **RoleMemo/DualMem·SAM·SAMem·MRPrompt 4편과 B4 중복 검증**
+- [iteration_05_synthesis.md](iteration_05_synthesis.md) — RoleMemo/DualMem·SAM·SAMem·MRPrompt 4편과 B4 중복 검증
+- [iteration_06_memory_access_and_temporal_reinterpretation.md](iteration_06_memory_access_and_temporal_reinterpretation.md) — **기억 조회·주입의 4가지 방식, SAM과 Q3의 유사성, 과거 생각 보존과 재해석의 차이 (Iteration 6)**
 - [track_b_utterance_grounded_intent_memory.md](track_b_utterance_grounded_intent_memory.md) — **B4: 발화 당시의 비공개 의도를 다음 턴에 기억하는 설계의 신규성 후보**
 
 ## 해석 원칙

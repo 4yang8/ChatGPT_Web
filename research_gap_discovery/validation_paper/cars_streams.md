@@ -40,3 +40,13 @@
 - **RESISTCLIENT** (arXiv:2604.10507, 2026): 본문에서 직접 인용; 반드시 PDF 확보.
 - **Psycheval** (arXiv:2601.01802, 2026): 평가 중복 여부.
 - CARS를 여러 상담사 전략에 조건부로 평가하고, 장기 관계 형성/심리 변화를 별도로 타당화한 논문 탐색.
+
+
+---
+
+## Memory read 관련 참고 (Iteration 6)
+- **Appendix A.2, pp.15–16**: generation template가 `Thinking / Emotion / Intention / Response`를 생성하고, 입력에 `DIALOGUE_HISTORY`, **`PLANNING` (previous feelings and goals regarding therapist's response)**, `EMOTION_STATE`를 둠.
+- **Access type**: 이전 감정/목표는 기본 입력에 제공하는 형태. 저장한 모든 **과거 발화별 private intent를 선택적으로 검색해 주입**한다는 정책이나 turn-id indexing은 PDF에서 확인되지 않음.
+- **B4 비교 중요성**: client-domain에서 이미 '이전 의도/감정 → 다음 발화'가 구현됨. 그보다 세밀한 *발화 단위 동기 provenance*의 효과를 입증해야 함.
+
+[Iteration 6 조회 비교](../iteration_06_memory_access_and_temporal_reinterpretation.md).

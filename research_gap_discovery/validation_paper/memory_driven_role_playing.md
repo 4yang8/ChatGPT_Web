@@ -27,3 +27,14 @@
 
 ## 현재 판정
 **B4: INDIRECT overlap**. 강한 일반 roleplaying 평가 baseline이지만 persistent episodic private-intent memory는 방법 범위 밖.
+
+
+---
+
+## Memory read/access 상세 (Iteration 6, §3.1–3.3, pp.3–5)
+- **LTM + STM 기본 컨텍스트 주입**: 정적 Narrative Schema(`core_traits`, `scene_facets`, `thinking_pattern` 등)와 현재 최근 dialogue `M_S`를 다음 발화의 **하나의 프롬프트에 같이 제공**.
+- **Query-time selection**: Magic-If Protocol이 대화 cue를 읽고 대응 facet을 **같은 모델 추론 내부에서 선택**하며 time/knowledge boundary 체크 후 발화. 외부 벡터 DB/Memory Tool 호출 아님.
+- **Execution**: 프롬프트 절차는 매 응답에 적용; 모델이 별도 memory tool 호출이 필요한지 판단하는 gate 없음.
+- **한계**: 실제 평가가 fixed `(LTM,STM)`의 단일턴 continuation; 자기 발화마다 새로운 private motive를 써서 나중에 다시 조회하는 mechanism을 검증하지 않음.
+
+[4논문 read-policy 비교](../iteration_06_memory_access_and_temporal_reinterpretation.md).

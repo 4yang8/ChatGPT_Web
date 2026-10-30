@@ -121,3 +121,26 @@
 **Major validity issue:** 시뮬레이터가 생성한 과거 의도는 인간의 검증된 심리 원인이 아닌 **simulation-internal latent event**다. self-consistency와 human psychological plausibility를 분리 평가. **기억의 정확성**과 **원래 기록된 해석의 진실성**은 다름(SAM Appendix E.2의 wrong frame failure).
 
 전체 판정 및 실험: [iteration_05_synthesis.md](../iteration_05_synthesis.md) · [B4 상세](../track_b_utterance_grounded_intent_memory.md).
+
+
+---
+
+## Iteration 6 — 실제 memory read·injection policy 비교 (2026-10-30)
+
+| 논문 | 메모리의 항상 가용 부분 | 선택·조회 트리거 | 실제 메모리 선택 방법 | 발화 생성에 전달 | 과거 생각의 의미 갱신 여부 |
+|---|---|---|---|---|---|
+| **DualMem** | persona/현재 query; long-term memory bank는 외부 | **매 query retrieval**, 임의로 생략하는 tool-use gate는 보고되지 않음 | Qwen3-Embedding-0.6B **top-10**; insight hit이면 linked fact 포함 | `fφ(p,q,R(M,q))` | write-time persona-conditioned insight를 저장; **temporal reinterpretation 자체를 검증하지 않음** |
+| **MRPrompt** | 구조화 LTM(scene facets) + 대화 STM이 **모두 모델 입력** | 매 응답에서 Magic-If 절차 수행, **외부 retrieval 없음** | 대화 cues로 관련 facet/정적 `thinking_pattern`을 prompt 안에서 선택 | 활성화한 기억에 근거해 단일 응답 생성 | **단일턴 benchmark**, within-session memory update 없음 |
+| **SAM** | live context + compact memory cues | 에이전트가 **필요 시 memory tool call**. 별개로 active context 64K 초과 시 page consolidation | Agent가 cue/page와 recall intent 선택; memory model이 raw page를 의도 조건부 재구성 | `ρ_t=M_rec(q,pages)`를 active context에 **주입** | 재구성은 current task/goal에 맞춘 **정보 추출**, **과거 사건의 심리적 재평가**와 동일하지 않음 |
+| **SAMem** | current state; 과거 state–thought Q-table | **test 시 매 decision step** 조회. training은 decaying ε-greedy로 새 thought vs memory 선택 | embedding-based state clustering (θ≈0.85), 그 state에서 **argmax Q(state,thought)** | 선택한 thought를 LLM의 다음 action 판단 지침으로 제공 | 과거 자신의 개별 의도를 다시 해석하기보다 **재사용할 유용한 사고 template 선택** |
+
+**별도 구분:** 저장/압축 시점(SAM 64K threshold), 조회 필요성 판단(SAM agent discretion), 검색 후보 선택(DualMem semantic top-K; SAMem state/Q), 조회된 기억의 **입력/실제 공개**는 전혀 다른 결정이다.
+
+### 상담 도메인과 비교
+- **CARS:** dialogue+previous feeling/goal `{PLANNING}`와 현재 emotion state를 기본 입력으로 받는다. 직전/누적 intent 기록을 무기한 보존·조회하는 구조로 확장해서 해석하지 말 것.
+- **CALM-IT:** running summary + 현재/이전 change stage, emotion, rapport, goal을 매 턴 함수 인자로 전달, dialogue history 업데이트. 과거 특정 자기 발화 motive의 독립 turn-id retrieval은 명시되지 않음.
+- **PATIENTACT:** 매 턴 topic activation tags로 관련 memory item 탐색하고 trust disclosure threshold를 통과한 내용만 노출. **내부 기억 이용과 상대방에게 공개는 구분**.
+
+**B4 실험 권고:** 먼저 **Content/Provenance** 비교는 oracle retrieval 고정, 그다음 동일 memory를 **always, per-turn top-K, optional tool, hybrid** 정책으로 조회. 세 번째 **Historical Preservation vs Temporal Reinterpretation**을 후속 증거 조건의 반사실 비교로 별도 검증.
+
+상세: [Iteration 6](../iteration_06_memory_access_and_temporal_reinterpretation.md).

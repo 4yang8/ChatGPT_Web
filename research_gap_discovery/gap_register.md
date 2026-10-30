@@ -176,3 +176,26 @@ AnnaAgent, Consistent Client Simulation for MI, Patient-Ψ, Roleplay-doh, CARE-B
 | B4 with A1: memory-derived simulator improvement가 상담사 학습에 기여 | **OPEN / optional** | 효과 검증 선행 및 비용 통제 필요 |
 
 **즉시 필요한 반증:** [iteration_05_synthesis.md](iteration_05_synthesis.md)와 [track_b_utterance_grounded_intent_memory.md](track_b_utterance_grounded_intent_memory.md). 2025 관련 논문 PRIME, Pre-storage reasoning, Thinking in Character, CATCH 등은 사용자 계획대로 **추후 2025 문헌 라운드**에서 검토.
+
+
+---
+
+## Iteration 6 — B4 memory access와 temporal reinterpretation 세분화 (2026-10-30)
+
+연구자 제안의 중요한 정교화:
+- 과거 발화 시 비공개 사고를 저장하는 것은 이후 **조회 가능성**을 남기는 것. **매 턴 강제 주입 / 매턴 검색 Top-K / 필요시 tool call / 혼합형**은 성능과 메커니즘이 달라 별개 실험 축이다.
+- **SAM**이 현재 Q3의 선택적 `retrieve_client_memory` 흐름과 *접근 정책* 관점에서 가장 가깝다. 단 SAM은 cue+raw pages+intent-driven reconstruction, Q3는 해당 구조까지 재현했다고 확인된 상태가 아니다.
+- **DualMem**은 fact+persona-conditioned insight를 **기억 작성 시점**에 생성하고 질의 시 top-10으로 조회한다. SAM의 '조회 목적별 재구성'을 **'과거 경험의 의미가 이후 바뀌는 심리적 재해석'**과 동일시하면 안 된다.
+- **SAMem**은 per-step state→top-Q thought, **MRPrompt**는 LTM 항상 주입 + prompt 내 facet 선택.
+
+| 후보 | 구체 질문 | 현재 판정 |
+|---|---|---|
+| **B4-C — Memory content/provenance** | 공개 발화가 같을 때, 해당 발화를 결정한 당시 private motive를 기록·연결하면 현재 상태·사후 insight만 가진 baseline보다 후속 발화의 심리적 일관성이 높아지는가? | **NARROW/KEEP as unverified hypothesis** |
+| **B4-A — Memory access policy** | 동일한 private episode memory를 늘 주입하거나 선택 검색하는 방식이 어떤 실험 조건에서 누락·오검색·비용·일관성 Trade-off를 보이는가? | **Method-choice evaluation only; 독립 Novelty 아님** |
+| **B4-T — Temporal reinterpretation** | 과거 동의 당시의 동기는 과거의 기록으로 남기면서, 이후 관계 경험으로 **그 동의에 대한 현재 해석**만 적절히 갱신할 수 있는가? | **NEW subhypothesis / 선행 중복·실제 중요성 미확정** |
+
+**주의:** `SAM = preservation`, `DualMem = reinterpretation`은 **느슨한 비유**일 뿐이다. SAM은 preservation+**read-time task-oriented reconstruction**, DualMem은 facts+**write-time persona insight**; 두 논문 모두 과거 특정 자기 발화를 인간처럼 *시간에 따라 다시 평가*하는 기능을 직접 검증하지 않음. 기술적 관념이 비슷한 것과 임상 심리적 타당성은 별도.
+
+**결정적 진단:** 현재 `s_k`가 동일하되 과거 `u_t`의 private motive가 다른 pair에서, 이후 상담사의 개입을 바꿔 일관되고 적절하게 반응하는지 평가. 이어 같은 `u_t,z_t^{then}`을 고정한 채 후속 경험만 변화시켜 `r_{k←t}`가 변하되 `z_t^{then}`의 역사적 기록을 덮어쓰지 않는지 검사. **기억 가용성, 조회 정책, 의미 갱신을 한 번에 조작하지 말 것.**
+
+상세 [Iteration 6 논의](iteration_06_memory_access_and_temporal_reinterpretation.md) / [Track B4](track_b_utterance_grounded_intent_memory.md). 여전히 2026 전문 검토 16편을 기반으로 한 가설이며, 최신 전체 문헌에 대한 Novelty claim 아님.

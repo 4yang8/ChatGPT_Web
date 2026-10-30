@@ -31,3 +31,16 @@ Private intent ledger를 만들 경우 **기록의 출처, 언제 확정됐는�
 
 ## 판정
 **B4: HIGH implementation overlap / different application question**. 강한 memory retrieval baseline과 오류 사례를 제시.
+
+
+---
+
+## Memory read/access 상세 (Iteration 6, §2.2, Appendix B.1, pp.3–5,15)
+- **Two levels**: compact memory cues는 active context에 유지, detailed raw trajectory pages는 외부 저장. **64K active-context threshold는 write-time consolidation 조건**이며 memory recall 요청 trigger가 아님. Page size 최대 32K.
+- **Optional lookup**: Agent가 추가 정보가 필요하다고 판단할 때 **memory tool 호출**, 스스로 recall intent `q_t`와 관련 cues/pages를 지정. 검색 page의 선택은 고정 score threshold보다 agent의 현재 목적에 의존.
+- **Tool result**: Memory Model이 선택된 raw pages를 `q_t`에 조건화해 relevant support `ρ_t`로 재구성하고 active context에 주입. 새 상태를 판단하는 건 reasoning agent.
+- **주의**: 읽기 시 재구성은 **task-specific extraction/reframing**. "그때 이런 생각이었다"라는 당시 기록과 "지금 돌이켜보면 그때의 의미는 다르다"라는 **새로운 내면 해석의 역사**를 분리 저장/평가한 것은 아님.
+- **현재 Q3와의 근접성**: 필요한 때 `retrieve_client_memory` Tool 사용을 선택하는 점은 유사. 그러나 Q3에 SAM의 raw page+cue 구조와 goal-conditioned reconstruction이 이미 있다고 주장하지 말 것.
+- **Critical failure (§App. E.2)**: query goal 자체가 잘못된 초기 가설에 편향되면 원본을 충실하게 보존·검색하면서도 오판을 강화 가능.
+
+[4논문 read-policy 비교](../iteration_06_memory_access_and_temporal_reinterpretation.md).
