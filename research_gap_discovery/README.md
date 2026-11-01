@@ -48,6 +48,7 @@ Research Gap 후보 정의 (아직 검증 전)
 - [validation_paper/PDF_SOURCES.md](validation_paper/PDF_SOURCES.md) — PDF 원본·출처·버전 추적
 - [iteration_04_synthesis.md](iteration_04_synthesis.md) — 2026 상담·시뮬레이션 12편 기준 Research Gap 검증
 - [iteration_05_synthesis.md](iteration_05_synthesis.md) — RoleMemo/DualMem·SAM·SAMem·MRPrompt 4편과 B4 중복 검증
+- [iteration_08_prior_inner_state_memory_and_literature_overlap.md](iteration_08_prior_inner_state_memory_and_literature_overlap.md) — **과거 발화 당시 내면의 기억과 선행연구 5편의 구현·실험 비교, CARS·DualMem·SAM의 차이 재정리**
 - [iteration_06_memory_access_and_temporal_reinterpretation.md](iteration_06_memory_access_and_temporal_reinterpretation.md) — **기억 조회·주입의 4가지 방식, SAM과 Q3의 유사성, 과거 생각 보존과 재해석의 차이 (Iteration 6)**
 - [track_b_utterance_grounded_intent_memory.md](track_b_utterance_grounded_intent_memory.md) — **B4: 발화 당시의 비공개 의도를 다음 턴에 기억하는 설계의 신규성 후보**
 
